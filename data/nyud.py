@@ -21,6 +21,7 @@ from utils.mypath import MyPath
 from utils.utils import mkdir_if_missing
 from data.google_drive import download_file_from_google_drive
 
+
 class NYUD_MT(data.Dataset):
     """
     NYUD dataset for multi-task learning.
@@ -66,7 +67,7 @@ class NYUD_MT(data.Dataset):
         self.im_ids = []
         self.images = []
         _image_dir = os.path.join(root, 'images')
-        
+
         # Edge Detection
         self.do_edge = do_edge
         self.edges = []
@@ -96,7 +97,6 @@ class NYUD_MT(data.Dataset):
                 lines = f.read().splitlines()
 
             for ii, line in enumerate(lines):
-
                 # Images
                 _image = os.path.join(_image_dir, line + '.jpg')
                 assert os.path.isfile(_image)
@@ -236,7 +236,7 @@ class NYUD_MT(data.Dataset):
 def test_mt():
     import torch
     import data.custom_transforms as tr
-    import  matplotlib.pyplot as plt 
+    import matplotlib.pyplot as plt
     from torchvision import transforms
     transform = transforms.Compose([tr.RandomHorizontalFlip(),
                                     tr.ScaleNRotate(rots=(-2, 2), scales=(.75, 1.25),
@@ -271,12 +271,12 @@ def test_mt():
             f, ax_arr = plt.subplots(5)
             for k in range(len(ax_arr)):
                 ax_arr[k].cla()
-            ax_arr[0].imshow(np.transpose(sample['image'][j], (1,2,0)))
-            ax_arr[1].imshow(sample['edge'][j,0])
-            ax_arr[2].imshow(sample['semseg'][j,0]/40)
-            ax_arr[3].imshow(np.transpose(sample['normals'][j], (1,2,0)))
-            max_depth = torch.max(sample['depth'][j,0][sample['depth'][j,0] != 255]).item()
-            ax_arr[4].imshow(sample['depth'][j,0]/max_depth) # Not ideal. Better is to show inverse depth.
+            ax_arr[0].imshow(np.transpose(sample['image'][j], (1, 2, 0)))
+            ax_arr[1].imshow(sample['edge'][j, 0])
+            ax_arr[2].imshow(sample['semseg'][j, 0] / 40)
+            ax_arr[3].imshow(np.transpose(sample['normals'][j], (1, 2, 0)))
+            max_depth = torch.max(sample['depth'][j, 0][sample['depth'][j, 0] != 255]).item()
+            ax_arr[4].imshow(sample['depth'][j, 0] / max_depth)  # Not ideal. Better is to show inverse depth.
 
             plt.show()
         break

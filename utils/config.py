@@ -21,99 +21,34 @@ def parse_task_dictionary(db_name, task_dictionary):
 
     task_cfg = edict()
     other_args = dict()
-    task_cfg.NAMES = []
-    task_cfg.NUM_OUTPUT = {}
-    task_cfg.FLAGVALS = {'image': cv2.INTER_CUBIC}
-    task_cfg.INFER_FLAGVALS = {}
+    task_cfg.NAMES = list(task_dictionary.keys())
+    task_cfg.NUM_OUTPUT = {t: 1 for t in task_cfg.NAMES}
+    task_cfg.FLAGVALS = {t: None for t in task_cfg.NAMES}
+    task_cfg.INFER_FLAGVALS = {t: None for t in task_cfg.NAMES}
 
-    if 'include_semseg' in task_dictionary.keys() and task_dictionary['include_semseg']:
-        # Semantic segmentation
-        tmp = 'semseg'
-        task_cfg.NAMES.append('semseg')
-        if db_name == 'PASCALContext':
-            task_cfg.NUM_OUTPUT[tmp] = 21
-        elif db_name == 'NYUD':
-            task_cfg.NUM_OUTPUT[tmp] = 40
-        else:
-            raise NotImplementedError
-        task_cfg.FLAGVALS[tmp] = cv2.INTER_NEAREST 
-        task_cfg.INFER_FLAGVALS[tmp] = cv2.INTER_NEAREST
-
-    if 'include_human_parts' in task_dictionary.keys() and task_dictionary['include_human_parts']:
-        # Human Parts Segmentation
-        assert(db_name == 'PASCALContext')
-        tmp = 'human_parts'
-        task_cfg.NAMES.append(tmp)
-        task_cfg.NUM_OUTPUT[tmp] = 7
-        task_cfg.FLAGVALS[tmp] = cv2.INTER_NEAREST
-        task_cfg.INFER_FLAGVALS[tmp] = cv2.INTER_NEAREST
-
-    if 'include_sal' in task_dictionary.keys() and task_dictionary['include_sal']:
-        # Saliency Estimation
-        assert(db_name == 'PASCALContext')
-        tmp = 'sal'
-        task_cfg.NAMES.append(tmp)
-        task_cfg.NUM_OUTPUT[tmp] = 1
-        task_cfg.FLAGVALS[tmp] = cv2.INTER_NEAREST
-        task_cfg.INFER_FLAGVALS[tmp] = cv2.INTER_LINEAR
-
-    if 'include_normals' in task_dictionary.keys() and task_dictionary['include_normals']:
-        # Surface Normals 
-        tmp = 'normals'
-        assert(db_name in ['PASCALContext', 'NYUD'])
-        task_cfg.NAMES.append(tmp)
-        task_cfg.NUM_OUTPUT[tmp] = 3
-        task_cfg.FLAGVALS[tmp] = cv2.INTER_CUBIC
-        task_cfg.INFER_FLAGVALS[tmp] = cv2.INTER_LINEAR
-        other_args['normloss'] = 1  # Hard-coded L1 loss for normals
-
-    if 'include_edge' in task_dictionary.keys() and task_dictionary['include_edge']:
-        # Edge Detection
-        assert(db_name in ['PASCALContext', 'NYUD'])
-        tmp = 'edge'
-        task_cfg.NAMES.append(tmp)
-        task_cfg.NUM_OUTPUT[tmp] = 1
-        task_cfg.FLAGVALS[tmp] = cv2.INTER_NEAREST
-        task_cfg.INFER_FLAGVALS[tmp] = cv2.INTER_LINEAR
-        other_args['edge_w'] = task_dictionary['edge_w']
-        other_args['eval_edge'] = False
-
-    if 'include_depth' in task_dictionary.keys() and task_dictionary['include_depth']:
-        # Depth
-        assert(db_name == 'NYUD')
-        tmp = 'depth'
-        task_cfg.NAMES.append(tmp)
-        task_cfg.NUM_OUTPUT[tmp] = 1
-        task_cfg.FLAGVALS[tmp] = cv2.INTER_NEAREST
-        task_cfg.INFER_FLAGVALS[tmp] = cv2.INTER_LINEAR
-        other_args['depthloss'] = 'l1'
- 
     return task_cfg, other_args
 
 
 def create_config(env_file, exp_file):
-    
-    # Read the files 
+    # Read the files
     with open(env_file, 'r') as stream:
         root_dir = yaml.safe_load(stream)['root_dir']
-   
+
     with open(exp_file, 'r') as stream:
         config = yaml.safe_load(stream)
-    
-    
+
     # Copy all the arguments
     cfg = edict()
     for k, v in config.items():
         cfg[k] = v
 
-    
     # Parse the task dictionary separately
     cfg.TASKS, extra_args = parse_task_dictionary(cfg['train_db_name'], cfg['task_dictionary'])
 
     for k, v in extra_args.items():
         cfg[k] = v
-    
-    cfg.ALL_TASKS = edict() # All tasks = Main tasks
+
+    cfg.ALL_TASKS = edict()  # All tasks = Main tasks
     cfg.ALL_TASKS.NAMES = []
     cfg.ALL_TASKS.NUM_OUTPUT = {}
     cfg.ALL_TASKS.FLAGVALS = {'image': cv2.INTER_CUBIC}
@@ -125,23 +60,21 @@ def create_config(env_file, exp_file):
         cfg.ALL_TASKS.FLAGVALS[k] = cfg.TASKS.FLAGVALS[k]
         cfg.ALL_TASKS.INFER_FLAGVALS[k] = cfg.TASKS.INFER_FLAGVALS[k]
 
-
     # Parse auxiliary dictionary separately
     if 'auxilary_task_dictionary' in cfg.keys():
-        cfg.AUXILARY_TASKS, extra_args = parse_task_dictionary(cfg['train_db_name'], 
-                                                                cfg['auxilary_task_dictionary'])
+        cfg.AUXILARY_TASKS, extra_args = parse_task_dictionary(cfg['train_db_name'],
+                                                               cfg['auxilary_task_dictionary'])
         for k, v in extra_args.items():
             cfg[k] = v
 
-        for k in cfg.AUXILARY_TASKS.NAMES: # Add auxilary tasks to all tasks
+        for k in cfg.AUXILARY_TASKS.NAMES:  # Add auxilary tasks to all tasks
             if not k in cfg.ALL_TASKS.NAMES:
                 cfg.ALL_TASKS.NAMES.append(k)
                 cfg.ALL_TASKS.NUM_OUTPUT[k] = cfg.AUXILARY_TASKS.NUM_OUTPUT[k]
                 cfg.ALL_TASKS.FLAGVALS[k] = cfg.AUXILARY_TASKS.FLAGVALS[k]
                 cfg.ALL_TASKS.INFER_FLAGVALS[k] = cfg.AUXILARY_TASKS.INFER_FLAGVALS[k]
 
-    
-    # Other arguments 
+    # Other arguments
     if cfg['train_db_name'] == 'PASCALContext':
         cfg.TRAIN = edict()
         cfg.TRAIN.SCALE = (512, 512)
@@ -153,10 +86,10 @@ def create_config(env_file, exp_file):
         cfg.TRAIN.SCALE = (480, 640)
         cfg.TEST = edict()
         cfg.TEST.SCALE = (480, 640)
-
+    elif cfg['train_db_name'] == 'PROSPECT':
+        pass
     else:
         raise NotImplementedError
-
 
     # Location of single-task performance dictionaries (For multi-task learning evaluation)
     if cfg['setup'] == 'multi_task':
@@ -164,8 +97,8 @@ def create_config(env_file, exp_file):
         cfg.TASKS.SINGLE_TASK_VAL_DICT = edict()
         for task in cfg.TASKS.NAMES:
             task_dir = os.path.join(root_dir, cfg['train_db_name'], cfg['backbone'], 'single_task', task)
-            val_dict = os.path.join(task_dir, 'results', '%s_val_%s.json' %(cfg['val_db_name'], task))
-            test_dict = os.path.join(task_dir, 'results', '%s_test_%s.json' %(cfg['val_db_name'], task))
+            val_dict = os.path.join(task_dir, 'results', '%s_val_%s.json' % (cfg['val_db_name'], task))
+            test_dict = os.path.join(task_dir, 'results', '%s_test_%s.json' % (cfg['val_db_name'], task))
             cfg.TASKS.SINGLE_TASK_TEST_DICT[task] = test_dict
             cfg.TASKS.SINGLE_TASK_VAL_DICT[task] = val_dict
 
@@ -185,7 +118,6 @@ def create_config(env_file, exp_file):
             output_dir = os.path.join(root_dir, cfg['train_db_name'], cfg['backbone'], cfg['model'])
     else:
         raise NotImplementedError
-        
 
     cfg['root_dir'] = root_dir
     cfg['output_dir'] = output_dir

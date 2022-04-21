@@ -125,7 +125,7 @@ class BinaryCrossEntropyLoss(Module):
 
 class DepthLoss(nn.Module):
     """
-    Loss for depth prediction. By default L1 loss is used.  
+    Loss for depth prediction. By default, L1 loss is used.
     """
     def __init__(self, loss='l1'):
         super(DepthLoss, self).__init__()

@@ -1,0 +1,47 @@
+# Setup
+setup: multi_task
+
+# Database
+train_db_name: PROSPECT
+val_db_name: PROSPECT
+trBatch: 256
+valBatch: 256
+nworkers: 4
+
+# Optimizer and scheduler
+epochs: 100
+optimizer: adam
+optimizer_kwargs:
+   lr: 0.001
+   weight_decay: 0.0001
+scheduler: poly
+
+# Model
+model: baseline
+backbone: resnet18
+head: MLP
+
+backbone_kwargs:
+    dilated: False
+
+# Tasks
+task_dictionary:
+    N: True
+    Cab: True
+    Car: True
+    Ant: True
+    Cs: True
+    Cw: True
+    Cdm: True
+
+# Loss kwargs
+loss_kwargs:
+   loss_scheme: baseline
+   loss_weights:
+       N: 1.0
+       Cab: 1.0
+       Car: 1.0
+       Ant: 1.0
+       Cs: 1.0
+       Cw: 1.0
+       Cdm: 1.0

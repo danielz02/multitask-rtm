@@ -72,3 +72,14 @@ class ASPP(nn.Module):
             res.append(conv(x))
         res = torch.cat(res, dim=1)
         return self.project(res)
+
+
+class MLPHead(nn.Sequential):
+    def __init__(self, in_features: int):
+        modules = [
+            nn.Linear(in_features, 64),
+            nn.ReLU(True),
+            nn.Linear(64, 1)
+        ]
+        super(MLPHead, self).__init__(*modules)
+
