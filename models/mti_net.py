@@ -9,7 +9,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from models.resnet import BasicBlock
+from models.resnet1d import BasicBlock
 from models.layers import SEBlock
 from models.padnet import MultiTaskDistillationModule
 

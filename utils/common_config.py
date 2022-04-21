@@ -19,12 +19,12 @@ def get_backbone(p):
     """ Return the backbone """
 
     if p['backbone'] == 'resnet18':
-        from models.resnet import resnet18
+        from models.resnet1d import resnet18
         backbone = resnet18(p['backbone_kwargs']['pretrained'])
         backbone_channels = 512
     
     elif p['backbone'] == 'resnet50':
-        from models.resnet import resnet50
+        from models.resnet1d import resnet50
         backbone = resnet50(p['backbone_kwargs']['pretrained'])
         backbone_channels = 2048
 

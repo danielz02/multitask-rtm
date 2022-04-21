@@ -9,7 +9,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from models.resnet import Bottleneck
+from models.resnet1d import Bottleneck
 from models.layers import SEBlock, SABlock
 
 
