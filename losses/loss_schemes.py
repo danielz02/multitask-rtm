@@ -14,7 +14,7 @@ class SingleTaskLoss(nn.Module):
         self.task = task
 
     def forward(self, pred, gt):
-        out = {self.task: self.loss_ft(pred[self.task], gt[self.task])}
+        out = {self.task: self.loss_ft(pred[self.task].reshape(-1), gt[self.task].reshape(-1))}
         out['total'] = out[self.task]
         return out
 
@@ -29,7 +29,7 @@ class MultiTaskLoss(nn.Module):
         self.loss_weights = loss_weights
 
     def forward(self, pred, gt):
-        out = {task: self.loss_ft[task](pred[task], gt[task]) for task in self.tasks}
+        out = {task: self.loss_ft[task](pred[task].reshape(-1), gt[task].reshape(-1)) for task in self.tasks}
         out['total'] = torch.sum(torch.stack([self.loss_weights[t] * out[t] for t in self.tasks]))
         return out
 

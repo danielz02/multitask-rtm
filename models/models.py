@@ -16,9 +16,8 @@ class SingleTaskModel(nn.Module):
         self.task = task
 
     def forward(self, x):
-        out_size = x.size()[2:]
         out = self.decoder(self.backbone(x))
-        return {self.task: F.interpolate(out, out_size, mode='bilinear')}
+        return {self.task: out}
 
 
 class MultiTaskModel(nn.Module):
@@ -31,6 +30,5 @@ class MultiTaskModel(nn.Module):
         self.tasks = tasks
 
     def forward(self, x):
-        out_size = x.size()[2:]
         shared_representation = self.backbone(x)
-        return {task: F.interpolate(self.decoders[task](shared_representation), out_size, mode='bilinear') for task in self.tasks}
+        return {task: self.decoders[task](shared_representation) for task in self.tasks}

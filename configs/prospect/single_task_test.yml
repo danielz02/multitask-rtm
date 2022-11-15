@@ -1,5 +1,5 @@
 # Setup
-setup: multi_task
+setup: single_task
 
 # Database
 train_db_name: PROSPECT
@@ -26,22 +26,10 @@ backbone_kwargs:
 
 # Tasks
 task_dictionary:
-    N: True
     Cab: True
-    Car: True
-    Ant: True
-    Cs: True
-    Cw: True
-    Cdm: True
 
 # Loss kwargs
 loss_kwargs:
    loss_scheme: baseline
    loss_weights:
-       N: 1.0
        Cab: 1.0
-       Car: 1.0
-       Ant: 1.0
-       Cs: 1.0
-       Cw: 1.0
-       Cdm: 1.0

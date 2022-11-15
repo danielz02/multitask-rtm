@@ -15,6 +15,9 @@ import math
 import torch
 import json
 
+from torchmetrics import R2Score
+from torchmetrics.functional import mean_squared_error
+
 
 def normal_ize(arr):
     arr_norm = np.linalg.norm(arr, ord=2, axis=2)[..., np.newaxis] + 1e-12
@@ -22,7 +25,6 @@ def normal_ize(arr):
 
 
 def eval_normals(loader, folder):
-
     deg_diff = []
     for i, sample in enumerate(loader):
         if i % 500 == 0:
@@ -72,18 +74,18 @@ class NormalsMeter(object):
     @torch.no_grad()
     def update(self, pred, gt):
         # Performance measurement happens in pixel wise fashion (Same as code from ASTMT (above))
-        pred = 2 * pred / 255 - 1 
-        pred = pred.permute(0, 3, 1, 2) # [B, C, H, W]
+        pred = 2 * pred / 255 - 1
+        pred = pred.permute(0, 3, 1, 2)  # [B, C, H, W]
         valid_mask = (gt != 255)
         invalid_mask = (gt == 255)
 
         # Put zeros where mask is invalid
         pred[invalid_mask] = 0.0
         gt[invalid_mask] = 0.0
-        
+
         # Calculate difference expressed in degrees 
         deg_diff_tmp = (180 / math.pi) * (torch.acos(torch.clamp(torch.sum(pred * gt, 1), min=-1, max=1)))
-        deg_diff_tmp = torch.masked_select(deg_diff_tmp, valid_mask[:,0])
+        deg_diff_tmp = torch.masked_select(deg_diff_tmp, valid_mask[:, 0])
 
         self.eval_dict['mean'] += torch.sum(deg_diff_tmp).item()
         self.eval_dict['rmse'] += torch.sum(torch.sqrt(torch.pow(deg_diff_tmp, 2))).item()
@@ -122,7 +124,7 @@ def eval_normals_predictions(database, save_dir, overfit=False):
         from data.pascal_context import PASCALContext
         gt_set = 'val'
         db = PASCALContext(split=gt_set, do_edge=False, do_human_parts=False, do_semseg=False,
-                                          do_normals=True, overfit=overfit)
+                           do_normals=True, overfit=overfit)
     elif database == 'NYUD':
         from data.nyud import NYUD_MT
         gt_set = 'val'
@@ -135,7 +137,7 @@ def eval_normals_predictions(database, save_dir, overfit=False):
     fname = os.path.join(save_dir, base_name + '.json')
 
     # Eval the model
-    print('Evaluate the saved images (surface normals)') 
+    print('Evaluate the saved images (surface normals)')
     eval_results = eval_normals(db, os.path.join(save_dir, 'normals'))
     with open(fname, 'w') as f:
         json.dump(eval_results, f)

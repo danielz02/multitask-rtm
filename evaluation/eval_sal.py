@@ -41,9 +41,9 @@ def eval_sal(loader, folder, mask_thres=None):
         if mask.shape != gt.shape:
             warnings.warn('Prediction and ground truth have different size. Resizing Prediction..')
             mask = cv2.resize(mask, gt.shape[::-1], interpolation=cv2.INTER_NEAREST)
-        
+
         for j, thres in enumerate(mask_thres):
-            #gt = (gt > thres).astype(np.float32) # Removed this from ASTMT code. GT is already binarized. 
+            # gt = (gt > thres).astype(np.float32) # Removed this from ASTMT code. GT is already binarized.
             mask_eval = (mask > thres).astype(np.float32)
             eval_result['all_jaccards'][i, j] = evaluation.jaccard(gt, mask_eval)
             eval_result['prec'][i, j], eval_result['rec'][i, j] = evaluation.precision_recall(gt, mask_eval)
@@ -67,11 +67,11 @@ def eval_sal(loader, folder, mask_thres=None):
 
 class SaliencyMeter(object):
     def __init__(self):
-        self.mask_thres = np.linspace(0.2, 0.9, 15) # As below
+        self.mask_thres = np.linspace(0.2, 0.9, 15)  # As below
         self.all_jacards = []
         self.prec = []
-        self.rec = []    
-    
+        self.rec = []
+
     @torch.no_grad()
     def update(self, pred, gt):
         # Predictions and ground-truth
@@ -85,7 +85,7 @@ class SaliencyMeter(object):
         rec = np.zeros((b, len(self.mask_thres)))
 
         for j, thres in enumerate(self.mask_thres):
-            #gt_eval = (gt > thres).cpu().numpy() # Removed this from ASTMT code. GT is already binarized.
+            # gt_eval = (gt > thres).cpu().numpy() # Removed this from ASTMT code. GT is already binarized.
             mask_eval = (pred > thres).cpu().numpy()
             for i in range(b):
                 jaccards[i, j] = evaluation.jaccard(gt[i], mask_eval[i])
@@ -102,7 +102,7 @@ class SaliencyMeter(object):
 
     def get_score(self, verbose=True):
         eval_result = dict()
-        
+
         # Concatenate batched results
         eval_result['all_jaccards'] = np.concatenate(self.all_jacards)
         eval_result['prec'] = np.concatenate(self.prec)
@@ -125,11 +125,11 @@ class SaliencyMeter(object):
         if verbose:
             # Print the results 
             print('Results for Saliency Estimation')
-            print('mIoU: {0:.3f}'.format(100*eval_result['mIoU']))
-            print('maxF: {0:.3f}'.format(100*eval_result['maxF']))
+            print('mIoU: {0:.3f}'.format(100 * eval_result['mIoU']))
+            print('maxF: {0:.3f}'.format(100 * eval_result['maxF']))
 
         return eval_result
-    
+
 
 def eval_sal_predictions(database, save_dir, overfit=False):
     """ Evaluate the saliency estimation maps that are stored in the save dir """
@@ -139,8 +139,8 @@ def eval_sal_predictions(database, save_dir, overfit=False):
         from data.pascal_context import PASCALContext
         split = 'val'
         db = PASCALContext(split=split, do_edge=False, do_human_parts=False, do_semseg=False,
-                                          do_normals=False, do_sal=True, overfit=overfit)
-    
+                           do_normals=False, do_sal=True, overfit=overfit)
+
     else:
         raise NotImplementedError
 
@@ -155,7 +155,7 @@ def eval_sal_predictions(database, save_dir, overfit=False):
 
     # Print the results 
     print('Results for Saliency Estimation')
-    print('mIoU: {0:.3f}'.format(100*eval_results['mIoU']))
-    print('maxF: {0:.3f}'.format(100*eval_results['maxF']))
+    print('mIoU: {0:.3f}'.format(100 * eval_results['mIoU']))
+    print('maxF: {0:.3f}'.format(100 * eval_results['maxF']))
 
     return eval_results

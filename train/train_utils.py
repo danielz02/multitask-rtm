@@ -36,7 +36,7 @@ def get_loss_meters(p):
 def train_vanilla(p, train_loader, model, criterion, optimizer, epoch):
     """ Vanilla training with fixed loss weights """
     losses = get_loss_meters(p)
-    # performance_meter = PerformanceMeter(p)
+    performance_meter = PerformanceMeter(p)
     progress = ProgressMeter(len(train_loader),
                              [v for v in losses.values()], prefix="Epoch: [{}]".format(epoch))
 
@@ -52,8 +52,8 @@ def train_vanilla(p, train_loader, model, criterion, optimizer, epoch):
         loss_dict = criterion(output, targets)
         for k, v in loss_dict.items():
             losses[k].update(v.item())
-        # performance_meter.update({t: get_output(output[t], t) for t in p.TASKS.NAMES},
-        #                          {t: targets[t] for t in p.TASKS.NAMES})
+        performance_meter.update({t: output[t] for t in p.TASKS.NAMES},
+                                 {t: targets[t] for t in p.TASKS.NAMES})
 
         # Backward
         optimizer.zero_grad()
@@ -63,6 +63,6 @@ def train_vanilla(p, train_loader, model, criterion, optimizer, epoch):
         if i % 25 == 0:
             progress.display(i)
 
-    # eval_results = performance_meter.get_score(verbose=True)
+    eval_results = performance_meter.get_score(verbose=True)
 
-    # return eval_results
+    return eval_results

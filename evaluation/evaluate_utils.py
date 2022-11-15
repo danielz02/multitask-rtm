@@ -7,8 +7,12 @@ import cv2
 import imageio
 import numpy as np
 import json
+
+import pandas as pd
 import torch
 import scipy.io as sio
+
+from evaluation.eval_regression import RegressionMeter
 from utils.utils import get_output, mkdir_if_missing
 
 
@@ -90,6 +94,8 @@ def get_single_task_meter(p, database, task):
         from evaluation.eval_edge import EdgeMeter
         return EdgeMeter(pos_weight=p['edge_w'])
 
+    elif p["train_db_name"] == "PROSPECT":
+        return RegressionMeter(target_name=task)
     else:
         raise NotImplementedError
 
@@ -109,51 +115,51 @@ def validate_results(p, current, reference):
         if task == 'semseg':  # Semantic segmentation (mIoU)
             if current['semseg']['mIoU'] > reference['semseg']['mIoU']:
                 print('New best semgentation model %.2f -> %.2f' % (
-                100 * reference['semseg']['mIoU'], 100 * current['semseg']['mIoU']))
+                    100 * reference['semseg']['mIoU'], 100 * current['semseg']['mIoU']))
                 improvement = True
             else:
                 print('No new best semgentation model %.2f -> %.2f' % (
-                100 * reference['semseg']['mIoU'], 100 * current['semseg']['mIoU']))
+                    100 * reference['semseg']['mIoU'], 100 * current['semseg']['mIoU']))
                 improvement = False
 
         elif task == 'human_parts':  # Human parts segmentation (mIoU)
             if current['human_parts']['mIoU'] > reference['human_parts']['mIoU']:
                 print('New best human parts semgentation model %.2f -> %.2f' % (
-                100 * reference['human_parts']['mIoU'], 100 * current['human_parts']['mIoU']))
+                    100 * reference['human_parts']['mIoU'], 100 * current['human_parts']['mIoU']))
                 improvement = True
             else:
                 print('No new best human parts semgentation model %.2f -> %.2f' % (
-                100 * reference['human_parts']['mIoU'], 100 * current['human_parts']['mIoU']))
+                    100 * reference['human_parts']['mIoU'], 100 * current['human_parts']['mIoU']))
                 improvement = False
 
         elif task == 'sal':  # Saliency estimation (mIoU)
             if current['sal']['mIoU'] > reference['sal']['mIoU']:
                 print('New best saliency estimation model %.2f -> %.2f' % (
-                100 * reference['sal']['mIoU'], 100 * current['sal']['mIoU']))
+                    100 * reference['sal']['mIoU'], 100 * current['sal']['mIoU']))
                 improvement = True
             else:
                 print('No new best saliency estimation model %.2f -> %.2f' % (
-                100 * reference['sal']['mIoU'], 100 * current['sal']['mIoU']))
+                    100 * reference['sal']['mIoU'], 100 * current['sal']['mIoU']))
                 improvement = False
 
         elif task == 'depth':  # Depth estimation (rmse)
             if current['depth']['rmse'] < reference['depth']['rmse']:
                 print('New best depth estimation model %.3f -> %.3f' % (
-                reference['depth']['rmse'], current['depth']['rmse']))
+                    reference['depth']['rmse'], current['depth']['rmse']))
                 improvement = True
             else:
                 print('No new best depth estimation model %.3f -> %.3f' % (
-                reference['depth']['rmse'], current['depth']['rmse']))
+                    reference['depth']['rmse'], current['depth']['rmse']))
                 improvement = False
 
         elif task == 'normals':  # Surface normals (mean error)
             if current['normals']['mean'] < reference['normals']['mean']:
                 print('New best surface normals estimation model %.3f -> %.3f' % (
-                reference['normals']['mean'], current['normals']['mean']))
+                    reference['normals']['mean'], current['normals']['mean']))
                 improvement = True
             else:
                 print('No new best surface normals estimation model %.3f -> %.3f' % (
-                reference['normals']['mean'], current['normals']['mean']))
+                    reference['normals']['mean'], current['normals']['mean']))
                 improvement = False
 
         elif task == 'edge':  # Validation happens based on odsF
@@ -164,19 +170,18 @@ def validate_results(p, current, reference):
 
             else:
                 print('No new best edge detection model %.3f -> %.3f' % (
-                reference['edge']['odsF'], current['edge']['odsF']))
+                    reference['edge']['odsF'], current['edge']['odsF']))
                 improvement = False
-
 
     else:  # Multi-task performance
         if current['multi_task_performance'] > reference['multi_task_performance']:
             print('New best multi-task model %.2f -> %.2f' % (
-            100 * reference['multi_task_performance'], 100 * current['multi_task_performance']))
+                100 * reference['multi_task_performance'], 100 * current['multi_task_performance']))
             improvement = True
 
         else:
             print('No new best multi-task model %.2f -> %.2f' % (
-            100 * reference['multi_task_performance'], 100 * current['multi_task_performance']))
+                100 * reference['multi_task_performance'], 100 * current['multi_task_performance']))
             improvement = False
 
     if improvement:  # Return result
@@ -201,7 +206,7 @@ def eval_model(p, val_loader, model):
         output = model(images)
 
         # Measure performance
-        performance_meter.update({t: get_output(output[t], t) for t in tasks}, targets)
+        performance_meter.update({t: output[t] for t in tasks}, targets)
 
     eval_results = performance_meter.get_score(verbose=True)
     return eval_results
@@ -214,69 +219,32 @@ def save_model_predictions(p, val_loader, model):
     print('Save model predictions to {}'.format(p['save_dir']))
     model.eval()
     tasks = p.TASKS.NAMES
+    task_output = {x: {"y_pred": [], "y_true": []} for x in tasks}
     save_dirs = {task: os.path.join(p['save_dir'], task) for task in tasks}
     for save_dir in save_dirs.values():
         mkdir_if_missing(save_dir)
 
     for ii, sample in enumerate(val_loader):
-        inputs, meta = sample['image'].cuda(non_blocking=True), sample['meta']
-        img_size = (inputs.size(2), inputs.size(3))
-        output = model(inputs)
+        inputs = sample['image'].cuda(non_blocking=True)
+        outputs = model(inputs)
+        for t in tasks:
+            task_output[t]["y_pred"].append(outputs[t].cpu().numpy())
+            task_output[t]["y_true"].append(sample[t].cpu().numpy())
 
-        for task in p.TASKS.NAMES:
-            output_task = get_output(output[task], task).cpu().data.numpy()
-            for jj in range(int(inputs.size()[0])):
-                if len(sample[task][jj].unique()) == 1 and sample[task][jj].unique() == 255:
-                    continue
-                fname = meta['image'][jj]
-                result = cv2.resize(output_task[jj], dsize=(meta['im_size'][1][jj], meta['im_size'][0][jj]),
-                                    interpolation=p.TASKS.INFER_FLAGVALS[task])
-                if task == 'depth':
-                    sio.savemat(os.path.join(save_dirs[task], fname + '.mat'), {'depth': result})
-                else:
-                    imageio.imwrite(os.path.join(save_dirs[task], fname + '.png'), result.astype(np.uint8))
+    for t in tasks:
+        task_output[t]["y_pred"] = np.concatenate(task_output[t]["y_pred"]).reshape(-1)
+        task_output[t]["y_true"] = np.concatenate(task_output[t]["y_true"]).reshape(-1)
+
+        pd.DataFrame(task_output[t]).to_csv(os.path.join(save_dirs[t] + 'eval.csv'))
+
+    return task_output
 
 
-def eval_all_results(p):
+def eval_all_results(p, single_task_test_dict):
     """ Evaluate results for every task by reading the predictions from the save dir """
-    save_dir = p['save_dir']
+
     results = {}
-
-    if 'edge' in p.TASKS.NAMES:
-        from evaluation.eval_edge import eval_edge_predictions
-        results['edge'] = eval_edge_predictions(p, database=p['val_db_name'],
-                                                save_dir=save_dir)
-
-    if 'semseg' in p.TASKS.NAMES:
-        from evaluation.eval_semseg import eval_semseg_predictions
-        results['semseg'] = eval_semseg_predictions(database=p['val_db_name'],
-                                                    save_dir=save_dir, overfit=p.overfit)
-
-    if 'human_parts' in p.TASKS.NAMES:
-        from evaluation.eval_human_parts import eval_human_parts_predictions
-        results['human_parts'] = eval_human_parts_predictions(database=p['val_db_name'],
-                                                              save_dir=save_dir, overfit=p.overfit)
-
-    if 'normals' in p.TASKS.NAMES:
-        from evaluation.eval_normals import eval_normals_predictions
-        results['normals'] = eval_normals_predictions(database=p['val_db_name'],
-                                                      save_dir=save_dir, overfit=p.overfit)
-
-    if 'sal' in p.TASKS.NAMES:
-        from evaluation.eval_sal import eval_sal_predictions
-        results['sal'] = eval_sal_predictions(database=p['val_db_name'],
-                                              save_dir=save_dir, overfit=p.overfit)
-
-    if 'depth' in p.TASKS.NAMES:
-        from evaluation.eval_depth import eval_depth_predictions
-        results['depth'] = eval_depth_predictions(database=p['val_db_name'],
-                                                  save_dir=save_dir, overfit=p.overfit)
-
-    if p['setup'] == 'multi_task':  # Perform the multi-task performance evaluation
-        single_task_test_dict = {}
-        for task, test_dict in p.TASKS.SINGLE_TASK_TEST_DICT.items():
-            with open(test_dict, 'r') as f_:
-                single_task_test_dict[task] = json.load(f_)
+    if p['setup'] == 'multi_task':  # Perform multitask performance evaluation
         results['multi_task_performance'] = calculate_multi_task_performance(results, single_task_test_dict)
         print('Multi-task learning performance on test set is %.2f' % (100 * results['multi_task_performance']))
 
