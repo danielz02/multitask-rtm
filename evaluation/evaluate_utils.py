@@ -30,7 +30,12 @@ class PerformanceMeter(object):
 
     def update(self, pred, gt):
         for t in self.tasks:
-            self.meters[t].update(pred[t], gt[t])
+            temp = gt[t].reshape(-1)
+            valid = (temp != -999).squeeze()
+            cur_pred = pred[t].reshape(-1)[valid]
+            cur_gt = gt[t].reshape(-1)[valid]
+            if len(cur_gt != 0):
+                self.meters[t].update(cur_pred, cur_gt)
 
     def get_score(self, verbose=True):
         eval_dict = {}
@@ -201,8 +206,8 @@ def eval_model(p, val_loader, model):
 
     for i, batch in enumerate(val_loader):
         # Forward pass
-        images = batch['image'].cuda(non_blocking=True)
-        targets = {task: batch[task].cuda(non_blocking=True) for task in tasks}
+        images = batch['image']#.cuda(non_blocking=True)
+        targets = {task: batch[task] for task in tasks} #.cuda(non_blocking=True)
         output = model(images)
 
         # Measure performance
@@ -225,7 +230,7 @@ def save_model_predictions(p, val_loader, model):
         mkdir_if_missing(save_dir)
 
     for ii, sample in enumerate(val_loader):
-        inputs = sample['image'].cuda(non_blocking=True)
+        inputs = sample['image']#.cuda(non_blocking=True)
         outputs = model(inputs)
         for t in tasks:
             task_output[t]["y_pred"].append(outputs[t].cpu().numpy())

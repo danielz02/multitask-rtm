@@ -1,0 +1,485 @@
+{'setup': 'multi_task', 'train_db_name': 'PROSPECT', 'val_db_name': 'PROSPECT', 'trBatch': 64, 'valBatch': 64, 'nworkers': 1, 'epochs': 100, 'optimizer': 'adam', 'optimizer_kwargs': {'lr': 0, 'weight_decay': 0}, 'scheduler': 'poly', 'model': 'baseline', 'backbone': 'resnet18', 'head': 'MLP', 'backbone_kwargs': {'dilated': False}, 'task_dictionary': {'Nitrogen': True, 'Phosphorus': True, 'Potassium': True, 'Chlorophylls_area': True, 'Leaf_Dry_Weight': True, 'Leaf_Fresh_Weight': True, 'LMA': True, 'Water Content': True, 'SLA': True, 'Narea': True, 'Carbon': True, 'Cellulose': True, 'Lignin': True, 'Fiber': True, 'Starch': True, 'Sugar': True, 'Phenolics': True, 'Flavonoids': True, 'd13C': True, 'd15N': True, 'Calcium': True, 'Magnesium': True, 'Sulfur': True, 'Aluminum': True, 'Boron': True, 'Copper': True, 'Iron': True, 'Manganese': True, 'Zinc': True, 'Chlorophylls': True, 'Carotenoids': True, 'Carotenoids_area': True, 'Glucose': True, 'Fructose': True, 'Sucrose': True, 'Amino_Acids': True, 'Protein': True, 'ABA': True, 'Proline': True, 'RWC': True, 'CHL_a': True, 'CHL_b': True}, 'loss_kwargs': {'loss_scheme': 'baseline', 'loss_weights': {'Nitrogen': 1, 'Phosphorus': 1, 'Potassium': 1, 'Chlorophylls_area': 1, 'Leaf_Dry_Weight': 1, 'Leaf_Fresh_Weight': 1, 'LMA': 1, 'Water Content': 1, 'SLA': 1, 'Narea': 1, 'Carbon': 1, 'Cellulose': 1, 'Lignin': 1, 'Fiber': 1, 'Starch': 1, 'Sugar': 1, 'Phenolics': 1, 'Flavonoids': 1, 'd13C': 1, 'd15N': 1, 'Calcium': 1, 'Magnesium': 1, 'Sulfur': 1, 'Aluminum': 1, 'Boron': 1, 'Copper': 1, 'Iron': 1, 'Manganese': 1, 'Zinc': 1, 'Chlorophylls': 1, 'Carotenoids': 1, 'Carotenoids_area': 1, 'Glucose': 1, 'Fructose': 1, 'Sucrose': 1, 'Amino_Acids': 1, 'Protein': 1, 'ABA': 1, 'Proline': 1, 'RWC': 1, 'CHL_a': 1, 'CHL_b': 1}}, 'TASKS': {'NAMES': ['Nitrogen', 'Phosphorus', 'Potassium', 'Chlorophylls_area', 'Leaf_Dry_Weight', 'Leaf_Fresh_Weight', 'LMA', 'Water Content', 'SLA', 'Narea', 'Carbon', 'Cellulose', 'Lignin', 'Fiber', 'Starch', 'Sugar', 'Phenolics', 'Flavonoids', 'd13C', 'd15N', 'Calcium', 'Magnesium', 'Sulfur', 'Aluminum', 'Boron', 'Copper', 'Iron', 'Manganese', 'Zinc', 'Chlorophylls', 'Carotenoids', 'Carotenoids_area', 'Glucose', 'Fructose', 'Sucrose', 'Amino_Acids', 'Protein', 'ABA', 'Proline', 'RWC', 'CHL_a', 'CHL_b'], 'NUM_OUTPUT': {'Nitrogen': 1, 'Phosphorus': 1, 'Potassium': 1, 'Chlorophylls_area': 1, 'Leaf_Dry_Weight': 1, 'Leaf_Fresh_Weight': 1, 'LMA': 1, 'Water Content': 1, 'SLA': 1, 'Narea': 1, 'Carbon': 1, 'Cellulose': 1, 'Lignin': 1, 'Fiber': 1, 'Starch': 1, 'Sugar': 1, 'Phenolics': 1, 'Flavonoids': 1, 'd13C': 1, 'd15N': 1, 'Calcium': 1, 'Magnesium': 1, 'Sulfur': 1, 'Aluminum': 1, 'Boron': 1, 'Copper': 1, 'Iron': 1, 'Manganese': 1, 'Zinc': 1, 'Chlorophylls': 1, 'Carotenoids': 1, 'Carotenoids_area': 1, 'Glucose': 1, 'Fructose': 1, 'Sucrose': 1, 'Amino_Acids': 1, 'Protein': 1, 'ABA': 1, 'Proline': 1, 'RWC': 1, 'CHL_a': 1, 'CHL_b': 1}, 'FLAGVALS': {'Nitrogen': None, 'Phosphorus': None, 'Potassium': None, 'Chlorophylls_area': None, 'Leaf_Dry_Weight': None, 'Leaf_Fresh_Weight': None, 'LMA': None, 'Water Content': None, 'SLA': None, 'Narea': None, 'Carbon': None, 'Cellulose': None, 'Lignin': None, 'Fiber': None, 'Starch': None, 'Sugar': None, 'Phenolics': None, 'Flavonoids': None, 'd13C': None, 'd15N': None, 'Calcium': None, 'Magnesium': None, 'Sulfur': None, 'Aluminum': None, 'Boron': None, 'Copper': None, 'Iron': None, 'Manganese': None, 'Zinc': None, 'Chlorophylls': None, 'Carotenoids': None, 'Carotenoids_area': None, 'Glucose': None, 'Fructose': None, 'Sucrose': None, 'Amino_Acids': None, 'Protein': None, 'ABA': None, 'Proline': None, 'RWC': None, 'CHL_a': None, 'CHL_b': None}, 'INFER_FLAGVALS': {'Nitrogen': None, 'Phosphorus': None, 'Potassium': None, 'Chlorophylls_area': None, 'Leaf_Dry_Weight': None, 'Leaf_Fresh_Weight': None, 'LMA': None, 'Water Content': None, 'SLA': None, 'Narea': None, 'Carbon': None, 'Cellulose': None, 'Lignin': None, 'Fiber': None, 'Starch': None, 'Sugar': None, 'Phenolics': None, 'Flavonoids': None, 'd13C': None, 'd15N': None, 'Calcium': None, 'Magnesium': None, 'Sulfur': None, 'Aluminum': None, 'Boron': None, 'Copper': None, 'Iron': None, 'Manganese': None, 'Zinc': None, 'Chlorophylls': None, 'Carotenoids': None, 'Carotenoids_area': None, 'Glucose': None, 'Fructose': None, 'Sucrose': None, 'Amino_Acids': None, 'Protein': None, 'ABA': None, 'Proline': None, 'RWC': None, 'CHL_a': None, 'CHL_b': None}, 'SINGLE_TASK_TEST_DICT': {'Nitrogen': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Nitrogen/results/PROSPECT_test_Nitrogen.json', 'Phosphorus': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Phosphorus/results/PROSPECT_test_Phosphorus.json', 'Potassium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Potassium/results/PROSPECT_test_Potassium.json', 'Chlorophylls_area': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Chlorophylls_area/results/PROSPECT_test_Chlorophylls_area.json', 'Leaf_Dry_Weight': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Leaf_Dry_Weight/results/PROSPECT_test_Leaf_Dry_Weight.json', 'Leaf_Fresh_Weight': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Leaf_Fresh_Weight/results/PROSPECT_test_Leaf_Fresh_Weight.json', 'LMA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/LMA/results/PROSPECT_test_LMA.json', 'Water Content': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Water Content/results/PROSPECT_test_Water Content.json', 'SLA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/SLA/results/PROSPECT_test_SLA.json', 'Narea': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Narea/results/PROSPECT_test_Narea.json', 'Carbon': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carbon/results/PROSPECT_test_Carbon.json', 'Cellulose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Cellulose/results/PROSPECT_test_Cellulose.json', 'Lignin': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Lignin/results/PROSPECT_test_Lignin.json', 'Fiber': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Fiber/results/PROSPECT_test_Fiber.json', 'Starch': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Starch/results/PROSPECT_test_Starch.json', 'Sugar': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sugar/results/PROSPECT_test_Sugar.json', 'Phenolics': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Phenolics/results/PROSPECT_test_Phenolics.json', 'Flavonoids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Flavonoids/results/PROSPECT_test_Flavonoids.json', 'd13C': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/d13C/results/PROSPECT_test_d13C.json', 'd15N': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/d15N/results/PROSPECT_test_d15N.json', 'Calcium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Calcium/results/PROSPECT_test_Calcium.json', 'Magnesium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Magnesium/results/PROSPECT_test_Magnesium.json', 'Sulfur': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sulfur/results/PROSPECT_test_Sulfur.json', 'Aluminum': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Aluminum/results/PROSPECT_test_Aluminum.json', 'Boron': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Boron/results/PROSPECT_test_Boron.json', 'Copper': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Copper/results/PROSPECT_test_Copper.json', 'Iron': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Iron/results/PROSPECT_test_Iron.json', 'Manganese': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Manganese/results/PROSPECT_test_Manganese.json', 'Zinc': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Zinc/results/PROSPECT_test_Zinc.json', 'Chlorophylls': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Chlorophylls/results/PROSPECT_test_Chlorophylls.json', 'Carotenoids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carotenoids/results/PROSPECT_test_Carotenoids.json', 'Carotenoids_area': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carotenoids_area/results/PROSPECT_test_Carotenoids_area.json', 'Glucose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Glucose/results/PROSPECT_test_Glucose.json', 'Fructose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Fructose/results/PROSPECT_test_Fructose.json', 'Sucrose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sucrose/results/PROSPECT_test_Sucrose.json', 'Amino_Acids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Amino_Acids/results/PROSPECT_test_Amino_Acids.json', 'Protein': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Protein/results/PROSPECT_test_Protein.json', 'ABA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/ABA/results/PROSPECT_test_ABA.json', 'Proline': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Proline/results/PROSPECT_test_Proline.json', 'RWC': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/RWC/results/PROSPECT_test_RWC.json', 'CHL_a': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/CHL_a/results/PROSPECT_test_CHL_a.json', 'CHL_b': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/CHL_b/results/PROSPECT_test_CHL_b.json'}, 'SINGLE_TASK_VAL_DICT': {'Nitrogen': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Nitrogen/results/PROSPECT_val_Nitrogen.json', 'Phosphorus': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Phosphorus/results/PROSPECT_val_Phosphorus.json', 'Potassium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Potassium/results/PROSPECT_val_Potassium.json', 'Chlorophylls_area': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Chlorophylls_area/results/PROSPECT_val_Chlorophylls_area.json', 'Leaf_Dry_Weight': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Leaf_Dry_Weight/results/PROSPECT_val_Leaf_Dry_Weight.json', 'Leaf_Fresh_Weight': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Leaf_Fresh_Weight/results/PROSPECT_val_Leaf_Fresh_Weight.json', 'LMA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/LMA/results/PROSPECT_val_LMA.json', 'Water Content': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Water Content/results/PROSPECT_val_Water Content.json', 'SLA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/SLA/results/PROSPECT_val_SLA.json', 'Narea': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Narea/results/PROSPECT_val_Narea.json', 'Carbon': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carbon/results/PROSPECT_val_Carbon.json', 'Cellulose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Cellulose/results/PROSPECT_val_Cellulose.json', 'Lignin': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Lignin/results/PROSPECT_val_Lignin.json', 'Fiber': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Fiber/results/PROSPECT_val_Fiber.json', 'Starch': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Starch/results/PROSPECT_val_Starch.json', 'Sugar': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sugar/results/PROSPECT_val_Sugar.json', 'Phenolics': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Phenolics/results/PROSPECT_val_Phenolics.json', 'Flavonoids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Flavonoids/results/PROSPECT_val_Flavonoids.json', 'd13C': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/d13C/results/PROSPECT_val_d13C.json', 'd15N': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/d15N/results/PROSPECT_val_d15N.json', 'Calcium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Calcium/results/PROSPECT_val_Calcium.json', 'Magnesium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Magnesium/results/PROSPECT_val_Magnesium.json', 'Sulfur': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sulfur/results/PROSPECT_val_Sulfur.json', 'Aluminum': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Aluminum/results/PROSPECT_val_Aluminum.json', 'Boron': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Boron/results/PROSPECT_val_Boron.json', 'Copper': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Copper/results/PROSPECT_val_Copper.json', 'Iron': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Iron/results/PROSPECT_val_Iron.json', 'Manganese': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Manganese/results/PROSPECT_val_Manganese.json', 'Zinc': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Zinc/results/PROSPECT_val_Zinc.json', 'Chlorophylls': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Chlorophylls/results/PROSPECT_val_Chlorophylls.json', 'Carotenoids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carotenoids/results/PROSPECT_val_Carotenoids.json', 'Carotenoids_area': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carotenoids_area/results/PROSPECT_val_Carotenoids_area.json', 'Glucose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Glucose/results/PROSPECT_val_Glucose.json', 'Fructose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Fructose/results/PROSPECT_val_Fructose.json', 'Sucrose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sucrose/results/PROSPECT_val_Sucrose.json', 'Amino_Acids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Amino_Acids/results/PROSPECT_val_Amino_Acids.json', 'Protein': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Protein/results/PROSPECT_val_Protein.json', 'ABA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/ABA/results/PROSPECT_val_ABA.json', 'Proline': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Proline/results/PROSPECT_val_Proline.json', 'RWC': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/RWC/results/PROSPECT_val_RWC.json', 'CHL_a': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/CHL_a/results/PROSPECT_val_CHL_a.json', 'CHL_b': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/CHL_b/results/PROSPECT_val_CHL_b.json'}}, 'ALL_TASKS': {'NAMES': ['Nitrogen', 'Phosphorus', 'Potassium', 'Chlorophylls_area', 'Leaf_Dry_Weight', 'Leaf_Fresh_Weight', 'LMA', 'Water Content', 'SLA', 'Narea', 'Carbon', 'Cellulose', 'Lignin', 'Fiber', 'Starch', 'Sugar', 'Phenolics', 'Flavonoids', 'd13C', 'd15N', 'Calcium', 'Magnesium', 'Sulfur', 'Aluminum', 'Boron', 'Copper', 'Iron', 'Manganese', 'Zinc', 'Chlorophylls', 'Carotenoids', 'Carotenoids_area', 'Glucose', 'Fructose', 'Sucrose', 'Amino_Acids', 'Protein', 'ABA', 'Proline', 'RWC', 'CHL_a', 'CHL_b'], 'NUM_OUTPUT': {'Nitrogen': 1, 'Phosphorus': 1, 'Potassium': 1, 'Chlorophylls_area': 1, 'Leaf_Dry_Weight': 1, 'Leaf_Fresh_Weight': 1, 'LMA': 1, 'Water Content': 1, 'SLA': 1, 'Narea': 1, 'Carbon': 1, 'Cellulose': 1, 'Lignin': 1, 'Fiber': 1, 'Starch': 1, 'Sugar': 1, 'Phenolics': 1, 'Flavonoids': 1, 'd13C': 1, 'd15N': 1, 'Calcium': 1, 'Magnesium': 1, 'Sulfur': 1, 'Aluminum': 1, 'Boron': 1, 'Copper': 1, 'Iron': 1, 'Manganese': 1, 'Zinc': 1, 'Chlorophylls': 1, 'Carotenoids': 1, 'Carotenoids_area': 1, 'Glucose': 1, 'Fructose': 1, 'Sucrose': 1, 'Amino_Acids': 1, 'Protein': 1, 'ABA': 1, 'Proline': 1, 'RWC': 1, 'CHL_a': 1, 'CHL_b': 1}, 'FLAGVALS': {'image': 2, 'Nitrogen': None, 'Phosphorus': None, 'Potassium': None, 'Chlorophylls_area': None, 'Leaf_Dry_Weight': None, 'Leaf_Fresh_Weight': None, 'LMA': None, 'Water Content': None, 'SLA': None, 'Narea': None, 'Carbon': None, 'Cellulose': None, 'Lignin': None, 'Fiber': None, 'Starch': None, 'Sugar': None, 'Phenolics': None, 'Flavonoids': None, 'd13C': None, 'd15N': None, 'Calcium': None, 'Magnesium': None, 'Sulfur': None, 'Aluminum': None, 'Boron': None, 'Copper': None, 'Iron': None, 'Manganese': None, 'Zinc': None, 'Chlorophylls': None, 'Carotenoids': None, 'Carotenoids_area': None, 'Glucose': None, 'Fructose': None, 'Sucrose': None, 'Amino_Acids': None, 'Protein': None, 'ABA': None, 'Proline': None, 'RWC': None, 'CHL_a': None, 'CHL_b': None}, 'INFER_FLAGVALS': {'Nitrogen': None, 'Phosphorus': None, 'Potassium': None, 'Chlorophylls_area': None, 'Leaf_Dry_Weight': None, 'Leaf_Fresh_Weight': None, 'LMA': None, 'Water Content': None, 'SLA': None, 'Narea': None, 'Carbon': None, 'Cellulose': None, 'Lignin': None, 'Fiber': None, 'Starch': None, 'Sugar': None, 'Phenolics': None, 'Flavonoids': None, 'd13C': None, 'd15N': None, 'Calcium': None, 'Magnesium': None, 'Sulfur': None, 'Aluminum': None, 'Boron': None, 'Copper': None, 'Iron': None, 'Manganese': None, 'Zinc': None, 'Chlorophylls': None, 'Carotenoids': None, 'Carotenoids_area': None, 'Glucose': None, 'Fructose': None, 'Sucrose': None, 'Amino_Acids': None, 'Protein': None, 'ABA': None, 'Proline': None, 'RWC': None, 'CHL_a': None, 'CHL_b': None}}, 'overfit': False, 'root_dir': '/home/danielz/PycharmProjects/multitask/data/results', 'output_dir': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline', 'save_dir': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline/results', 'checkpoint': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline/checkpoint.pth.tar', 'best_model': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline/best_model.pth.tar'}
+Retrieve model
+Get loss
+MultiTaskLoss(
+  (loss_ft): ModuleDict(
+    (Nitrogen): MSELoss()
+    (Phosphorus): MSELoss()
+    (Potassium): MSELoss()
+    (Chlorophylls_area): MSELoss()
+    (Leaf_Dry_Weight): MSELoss()
+    (Leaf_Fresh_Weight): MSELoss()
+    (LMA): MSELoss()
+    (Water Content): MSELoss()
+    (SLA): MSELoss()
+    (Narea): MSELoss()
+    (Carbon): MSELoss()
+    (Cellulose): MSELoss()
+    (Lignin): MSELoss()
+    (Fiber): MSELoss()
+    (Starch): MSELoss()
+    (Sugar): MSELoss()
+    (Phenolics): MSELoss()
+    (Flavonoids): MSELoss()
+    (d13C): MSELoss()
+    (d15N): MSELoss()
+    (Calcium): MSELoss()
+    (Magnesium): MSELoss()
+    (Sulfur): MSELoss()
+    (Aluminum): MSELoss()
+    (Boron): MSELoss()
+    (Copper): MSELoss()
+    (Iron): MSELoss()
+    (Manganese): MSELoss()
+    (Zinc): MSELoss()
+    (Chlorophylls): MSELoss()
+    (Carotenoids): MSELoss()
+    (Carotenoids_area): MSELoss()
+    (Glucose): MSELoss()
+    (Fructose): MSELoss()
+    (Sucrose): MSELoss()
+    (Amino_Acids): MSELoss()
+    (Protein): MSELoss()
+    (ABA): MSELoss()
+    (Proline): MSELoss()
+    (RWC): MSELoss()
+    (CHL_a): MSELoss()
+    (CHL_b): MSELoss()
+  )
+)
+Set CuDNN benchmark
+Retrieve optimizer
+Optimizer uses a single parameter group - (Default)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    eps: 1e-08
+    foreach: None
+    lr: 0
+    maximize: False
+    weight_decay: 0
+)
+Retrieve dataset
+Preparing train loader for db: PROSPECT
+{'setup': 'multi_task', 'train_db_name': 'PROSPECT', 'val_db_name': 'PROSPECT', 'trBatch': 64, 'valBatch': 64, 'nworkers': 1, 'epochs': 100, 'optimizer': 'adam', 'optimizer_kwargs': {'lr': 0, 'weight_decay': 0}, 'scheduler': 'poly', 'model': 'baseline', 'backbone': 'resnet18', 'head': 'MLP', 'backbone_kwargs': {'dilated': False}, 'task_dictionary': {'Nitrogen': True, 'Phosphorus': True, 'Potassium': True, 'Chlorophylls_area': True, 'Leaf_Dry_Weight': True, 'Leaf_Fresh_Weight': True, 'LMA': True, 'Water Content': True, 'SLA': True, 'Narea': True, 'Carbon': True, 'Cellulose': True, 'Lignin': True, 'Fiber': True, 'Starch': True, 'Sugar': True, 'Phenolics': True, 'Flavonoids': True, 'd13C': True, 'd15N': True, 'Calcium': True, 'Magnesium': True, 'Sulfur': True, 'Aluminum': True, 'Boron': True, 'Copper': True, 'Iron': True, 'Manganese': True, 'Zinc': True, 'Chlorophylls': True, 'Carotenoids': True, 'Carotenoids_area': True, 'Glucose': True, 'Fructose': True, 'Sucrose': True, 'Amino_Acids': True, 'Protein': True, 'ABA': True, 'Proline': True, 'RWC': True, 'CHL_a': True, 'CHL_b': True}, 'loss_kwargs': {'loss_scheme': 'baseline', 'loss_weights': {'Nitrogen': 1, 'Phosphorus': 1, 'Potassium': 1, 'Chlorophylls_area': 1, 'Leaf_Dry_Weight': 1, 'Leaf_Fresh_Weight': 1, 'LMA': 1, 'Water Content': 1, 'SLA': 1, 'Narea': 1, 'Carbon': 1, 'Cellulose': 1, 'Lignin': 1, 'Fiber': 1, 'Starch': 1, 'Sugar': 1, 'Phenolics': 1, 'Flavonoids': 1, 'd13C': 1, 'd15N': 1, 'Calcium': 1, 'Magnesium': 1, 'Sulfur': 1, 'Aluminum': 1, 'Boron': 1, 'Copper': 1, 'Iron': 1, 'Manganese': 1, 'Zinc': 1, 'Chlorophylls': 1, 'Carotenoids': 1, 'Carotenoids_area': 1, 'Glucose': 1, 'Fructose': 1, 'Sucrose': 1, 'Amino_Acids': 1, 'Protein': 1, 'ABA': 1, 'Proline': 1, 'RWC': 1, 'CHL_a': 1, 'CHL_b': 1}}, 'TASKS': {'NAMES': ['Nitrogen', 'Phosphorus', 'Potassium', 'Chlorophylls_area', 'Leaf_Dry_Weight', 'Leaf_Fresh_Weight', 'LMA', 'Water Content', 'SLA', 'Narea', 'Carbon', 'Cellulose', 'Lignin', 'Fiber', 'Starch', 'Sugar', 'Phenolics', 'Flavonoids', 'd13C', 'd15N', 'Calcium', 'Magnesium', 'Sulfur', 'Aluminum', 'Boron', 'Copper', 'Iron', 'Manganese', 'Zinc', 'Chlorophylls', 'Carotenoids', 'Carotenoids_area', 'Glucose', 'Fructose', 'Sucrose', 'Amino_Acids', 'Protein', 'ABA', 'Proline', 'RWC', 'CHL_a', 'CHL_b'], 'NUM_OUTPUT': {'Nitrogen': 1, 'Phosphorus': 1, 'Potassium': 1, 'Chlorophylls_area': 1, 'Leaf_Dry_Weight': 1, 'Leaf_Fresh_Weight': 1, 'LMA': 1, 'Water Content': 1, 'SLA': 1, 'Narea': 1, 'Carbon': 1, 'Cellulose': 1, 'Lignin': 1, 'Fiber': 1, 'Starch': 1, 'Sugar': 1, 'Phenolics': 1, 'Flavonoids': 1, 'd13C': 1, 'd15N': 1, 'Calcium': 1, 'Magnesium': 1, 'Sulfur': 1, 'Aluminum': 1, 'Boron': 1, 'Copper': 1, 'Iron': 1, 'Manganese': 1, 'Zinc': 1, 'Chlorophylls': 1, 'Carotenoids': 1, 'Carotenoids_area': 1, 'Glucose': 1, 'Fructose': 1, 'Sucrose': 1, 'Amino_Acids': 1, 'Protein': 1, 'ABA': 1, 'Proline': 1, 'RWC': 1, 'CHL_a': 1, 'CHL_b': 1}, 'FLAGVALS': {'Nitrogen': None, 'Phosphorus': None, 'Potassium': None, 'Chlorophylls_area': None, 'Leaf_Dry_Weight': None, 'Leaf_Fresh_Weight': None, 'LMA': None, 'Water Content': None, 'SLA': None, 'Narea': None, 'Carbon': None, 'Cellulose': None, 'Lignin': None, 'Fiber': None, 'Starch': None, 'Sugar': None, 'Phenolics': None, 'Flavonoids': None, 'd13C': None, 'd15N': None, 'Calcium': None, 'Magnesium': None, 'Sulfur': None, 'Aluminum': None, 'Boron': None, 'Copper': None, 'Iron': None, 'Manganese': None, 'Zinc': None, 'Chlorophylls': None, 'Carotenoids': None, 'Carotenoids_area': None, 'Glucose': None, 'Fructose': None, 'Sucrose': None, 'Amino_Acids': None, 'Protein': None, 'ABA': None, 'Proline': None, 'RWC': None, 'CHL_a': None, 'CHL_b': None}, 'INFER_FLAGVALS': {'Nitrogen': None, 'Phosphorus': None, 'Potassium': None, 'Chlorophylls_area': None, 'Leaf_Dry_Weight': None, 'Leaf_Fresh_Weight': None, 'LMA': None, 'Water Content': None, 'SLA': None, 'Narea': None, 'Carbon': None, 'Cellulose': None, 'Lignin': None, 'Fiber': None, 'Starch': None, 'Sugar': None, 'Phenolics': None, 'Flavonoids': None, 'd13C': None, 'd15N': None, 'Calcium': None, 'Magnesium': None, 'Sulfur': None, 'Aluminum': None, 'Boron': None, 'Copper': None, 'Iron': None, 'Manganese': None, 'Zinc': None, 'Chlorophylls': None, 'Carotenoids': None, 'Carotenoids_area': None, 'Glucose': None, 'Fructose': None, 'Sucrose': None, 'Amino_Acids': None, 'Protein': None, 'ABA': None, 'Proline': None, 'RWC': None, 'CHL_a': None, 'CHL_b': None}, 'SINGLE_TASK_TEST_DICT': {'Nitrogen': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Nitrogen/results/PROSPECT_test_Nitrogen.json', 'Phosphorus': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Phosphorus/results/PROSPECT_test_Phosphorus.json', 'Potassium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Potassium/results/PROSPECT_test_Potassium.json', 'Chlorophylls_area': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Chlorophylls_area/results/PROSPECT_test_Chlorophylls_area.json', 'Leaf_Dry_Weight': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Leaf_Dry_Weight/results/PROSPECT_test_Leaf_Dry_Weight.json', 'Leaf_Fresh_Weight': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Leaf_Fresh_Weight/results/PROSPECT_test_Leaf_Fresh_Weight.json', 'LMA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/LMA/results/PROSPECT_test_LMA.json', 'Water Content': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Water Content/results/PROSPECT_test_Water Content.json', 'SLA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/SLA/results/PROSPECT_test_SLA.json', 'Narea': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Narea/results/PROSPECT_test_Narea.json', 'Carbon': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carbon/results/PROSPECT_test_Carbon.json', 'Cellulose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Cellulose/results/PROSPECT_test_Cellulose.json', 'Lignin': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Lignin/results/PROSPECT_test_Lignin.json', 'Fiber': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Fiber/results/PROSPECT_test_Fiber.json', 'Starch': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Starch/results/PROSPECT_test_Starch.json', 'Sugar': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sugar/results/PROSPECT_test_Sugar.json', 'Phenolics': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Phenolics/results/PROSPECT_test_Phenolics.json', 'Flavonoids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Flavonoids/results/PROSPECT_test_Flavonoids.json', 'd13C': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/d13C/results/PROSPECT_test_d13C.json', 'd15N': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/d15N/results/PROSPECT_test_d15N.json', 'Calcium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Calcium/results/PROSPECT_test_Calcium.json', 'Magnesium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Magnesium/results/PROSPECT_test_Magnesium.json', 'Sulfur': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sulfur/results/PROSPECT_test_Sulfur.json', 'Aluminum': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Aluminum/results/PROSPECT_test_Aluminum.json', 'Boron': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Boron/results/PROSPECT_test_Boron.json', 'Copper': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Copper/results/PROSPECT_test_Copper.json', 'Iron': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Iron/results/PROSPECT_test_Iron.json', 'Manganese': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Manganese/results/PROSPECT_test_Manganese.json', 'Zinc': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Zinc/results/PROSPECT_test_Zinc.json', 'Chlorophylls': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Chlorophylls/results/PROSPECT_test_Chlorophylls.json', 'Carotenoids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carotenoids/results/PROSPECT_test_Carotenoids.json', 'Carotenoids_area': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carotenoids_area/results/PROSPECT_test_Carotenoids_area.json', 'Glucose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Glucose/results/PROSPECT_test_Glucose.json', 'Fructose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Fructose/results/PROSPECT_test_Fructose.json', 'Sucrose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sucrose/results/PROSPECT_test_Sucrose.json', 'Amino_Acids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Amino_Acids/results/PROSPECT_test_Amino_Acids.json', 'Protein': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Protein/results/PROSPECT_test_Protein.json', 'ABA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/ABA/results/PROSPECT_test_ABA.json', 'Proline': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Proline/results/PROSPECT_test_Proline.json', 'RWC': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/RWC/results/PROSPECT_test_RWC.json', 'CHL_a': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/CHL_a/results/PROSPECT_test_CHL_a.json', 'CHL_b': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/CHL_b/results/PROSPECT_test_CHL_b.json'}, 'SINGLE_TASK_VAL_DICT': {'Nitrogen': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Nitrogen/results/PROSPECT_val_Nitrogen.json', 'Phosphorus': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Phosphorus/results/PROSPECT_val_Phosphorus.json', 'Potassium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Potassium/results/PROSPECT_val_Potassium.json', 'Chlorophylls_area': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Chlorophylls_area/results/PROSPECT_val_Chlorophylls_area.json', 'Leaf_Dry_Weight': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Leaf_Dry_Weight/results/PROSPECT_val_Leaf_Dry_Weight.json', 'Leaf_Fresh_Weight': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Leaf_Fresh_Weight/results/PROSPECT_val_Leaf_Fresh_Weight.json', 'LMA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/LMA/results/PROSPECT_val_LMA.json', 'Water Content': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Water Content/results/PROSPECT_val_Water Content.json', 'SLA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/SLA/results/PROSPECT_val_SLA.json', 'Narea': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Narea/results/PROSPECT_val_Narea.json', 'Carbon': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carbon/results/PROSPECT_val_Carbon.json', 'Cellulose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Cellulose/results/PROSPECT_val_Cellulose.json', 'Lignin': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Lignin/results/PROSPECT_val_Lignin.json', 'Fiber': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Fiber/results/PROSPECT_val_Fiber.json', 'Starch': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Starch/results/PROSPECT_val_Starch.json', 'Sugar': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sugar/results/PROSPECT_val_Sugar.json', 'Phenolics': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Phenolics/results/PROSPECT_val_Phenolics.json', 'Flavonoids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Flavonoids/results/PROSPECT_val_Flavonoids.json', 'd13C': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/d13C/results/PROSPECT_val_d13C.json', 'd15N': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/d15N/results/PROSPECT_val_d15N.json', 'Calcium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Calcium/results/PROSPECT_val_Calcium.json', 'Magnesium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Magnesium/results/PROSPECT_val_Magnesium.json', 'Sulfur': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sulfur/results/PROSPECT_val_Sulfur.json', 'Aluminum': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Aluminum/results/PROSPECT_val_Aluminum.json', 'Boron': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Boron/results/PROSPECT_val_Boron.json', 'Copper': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Copper/results/PROSPECT_val_Copper.json', 'Iron': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Iron/results/PROSPECT_val_Iron.json', 'Manganese': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Manganese/results/PROSPECT_val_Manganese.json', 'Zinc': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Zinc/results/PROSPECT_val_Zinc.json', 'Chlorophylls': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Chlorophylls/results/PROSPECT_val_Chlorophylls.json', 'Carotenoids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carotenoids/results/PROSPECT_val_Carotenoids.json', 'Carotenoids_area': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carotenoids_area/results/PROSPECT_val_Carotenoids_area.json', 'Glucose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Glucose/results/PROSPECT_val_Glucose.json', 'Fructose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Fructose/results/PROSPECT_val_Fructose.json', 'Sucrose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sucrose/results/PROSPECT_val_Sucrose.json', 'Amino_Acids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Amino_Acids/results/PROSPECT_val_Amino_Acids.json', 'Protein': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Protein/results/PROSPECT_val_Protein.json', 'ABA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/ABA/results/PROSPECT_val_ABA.json', 'Proline': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Proline/results/PROSPECT_val_Proline.json', 'RWC': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/RWC/results/PROSPECT_val_RWC.json', 'CHL_a': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/CHL_a/results/PROSPECT_val_CHL_a.json', 'CHL_b': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/CHL_b/results/PROSPECT_val_CHL_b.json'}}, 'ALL_TASKS': {'NAMES': ['Nitrogen', 'Phosphorus', 'Potassium', 'Chlorophylls_area', 'Leaf_Dry_Weight', 'Leaf_Fresh_Weight', 'LMA', 'Water Content', 'SLA', 'Narea', 'Carbon', 'Cellulose', 'Lignin', 'Fiber', 'Starch', 'Sugar', 'Phenolics', 'Flavonoids', 'd13C', 'd15N', 'Calcium', 'Magnesium', 'Sulfur', 'Aluminum', 'Boron', 'Copper', 'Iron', 'Manganese', 'Zinc', 'Chlorophylls', 'Carotenoids', 'Carotenoids_area', 'Glucose', 'Fructose', 'Sucrose', 'Amino_Acids', 'Protein', 'ABA', 'Proline', 'RWC', 'CHL_a', 'CHL_b'], 'NUM_OUTPUT': {'Nitrogen': 1, 'Phosphorus': 1, 'Potassium': 1, 'Chlorophylls_area': 1, 'Leaf_Dry_Weight': 1, 'Leaf_Fresh_Weight': 1, 'LMA': 1, 'Water Content': 1, 'SLA': 1, 'Narea': 1, 'Carbon': 1, 'Cellulose': 1, 'Lignin': 1, 'Fiber': 1, 'Starch': 1, 'Sugar': 1, 'Phenolics': 1, 'Flavonoids': 1, 'd13C': 1, 'd15N': 1, 'Calcium': 1, 'Magnesium': 1, 'Sulfur': 1, 'Aluminum': 1, 'Boron': 1, 'Copper': 1, 'Iron': 1, 'Manganese': 1, 'Zinc': 1, 'Chlorophylls': 1, 'Carotenoids': 1, 'Carotenoids_area': 1, 'Glucose': 1, 'Fructose': 1, 'Sucrose': 1, 'Amino_Acids': 1, 'Protein': 1, 'ABA': 1, 'Proline': 1, 'RWC': 1, 'CHL_a': 1, 'CHL_b': 1}, 'FLAGVALS': {'image': 2, 'Nitrogen': None, 'Phosphorus': None, 'Potassium': None, 'Chlorophylls_area': None, 'Leaf_Dry_Weight': None, 'Leaf_Fresh_Weight': None, 'LMA': None, 'Water Content': None, 'SLA': None, 'Narea': None, 'Carbon': None, 'Cellulose': None, 'Lignin': None, 'Fiber': None, 'Starch': None, 'Sugar': None, 'Phenolics': None, 'Flavonoids': None, 'd13C': None, 'd15N': None, 'Calcium': None, 'Magnesium': None, 'Sulfur': None, 'Aluminum': None, 'Boron': None, 'Copper': None, 'Iron': None, 'Manganese': None, 'Zinc': None, 'Chlorophylls': None, 'Carotenoids': None, 'Carotenoids_area': None, 'Glucose': None, 'Fructose': None, 'Sucrose': None, 'Amino_Acids': None, 'Protein': None, 'ABA': None, 'Proline': None, 'RWC': None, 'CHL_a': None, 'CHL_b': None}, 'INFER_FLAGVALS': {'Nitrogen': None, 'Phosphorus': None, 'Potassium': None, 'Chlorophylls_area': None, 'Leaf_Dry_Weight': None, 'Leaf_Fresh_Weight': None, 'LMA': None, 'Water Content': None, 'SLA': None, 'Narea': None, 'Carbon': None, 'Cellulose': None, 'Lignin': None, 'Fiber': None, 'Starch': None, 'Sugar': None, 'Phenolics': None, 'Flavonoids': None, 'd13C': None, 'd15N': None, 'Calcium': None, 'Magnesium': None, 'Sulfur': None, 'Aluminum': None, 'Boron': None, 'Copper': None, 'Iron': None, 'Manganese': None, 'Zinc': None, 'Chlorophylls': None, 'Carotenoids': None, 'Carotenoids_area': None, 'Glucose': None, 'Fructose': None, 'Sucrose': None, 'Amino_Acids': None, 'Protein': None, 'ABA': None, 'Proline': None, 'RWC': None, 'CHL_a': None, 'CHL_b': None}}, 'overfit': False, 'root_dir': '/home/danielz/PycharmProjects/multitask/data/results', 'output_dir': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline', 'save_dir': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline/results', 'checkpoint': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline/checkpoint.pth.tar', 'best_model': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline/best_model.pth.tar'}
+Retrieve model
+Get loss
+MultiTaskLoss(
+  (loss_ft): ModuleDict(
+    (Nitrogen): MSELoss()
+    (Phosphorus): MSELoss()
+    (Potassium): MSELoss()
+    (Chlorophylls_area): MSELoss()
+    (Leaf_Dry_Weight): MSELoss()
+    (Leaf_Fresh_Weight): MSELoss()
+    (LMA): MSELoss()
+    (Water Content): MSELoss()
+    (SLA): MSELoss()
+    (Narea): MSELoss()
+    (Carbon): MSELoss()
+    (Cellulose): MSELoss()
+    (Lignin): MSELoss()
+    (Fiber): MSELoss()
+    (Starch): MSELoss()
+    (Sugar): MSELoss()
+    (Phenolics): MSELoss()
+    (Flavonoids): MSELoss()
+    (d13C): MSELoss()
+    (d15N): MSELoss()
+    (Calcium): MSELoss()
+    (Magnesium): MSELoss()
+    (Sulfur): MSELoss()
+    (Aluminum): MSELoss()
+    (Boron): MSELoss()
+    (Copper): MSELoss()
+    (Iron): MSELoss()
+    (Manganese): MSELoss()
+    (Zinc): MSELoss()
+    (Chlorophylls): MSELoss()
+    (Carotenoids): MSELoss()
+    (Carotenoids_area): MSELoss()
+    (Glucose): MSELoss()
+    (Fructose): MSELoss()
+    (Sucrose): MSELoss()
+    (Amino_Acids): MSELoss()
+    (Protein): MSELoss()
+    (ABA): MSELoss()
+    (Proline): MSELoss()
+    (RWC): MSELoss()
+    (CHL_a): MSELoss()
+    (CHL_b): MSELoss()
+  )
+)
+Set CuDNN benchmark
+Retrieve optimizer
+Optimizer uses a single parameter group - (Default)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    eps: 1e-08
+    foreach: None
+    lr: 0
+    maximize: False
+    weight_decay: 0
+)
+Retrieve dataset
+Preparing train loader for db: PROSPECT
+Preparing val loader for db: PROSPECT
+Preparing val loader for db: PROSPECT
+Train samples 5004 - Val samples 1252
+Train transformations:
+[Identity()]
+Val transformations:
+[Identity()]
+No checkpoint file at /home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline/checkpoint.pth.tar
+Starting main loop
+Epoch 1/100
+----------
+Adjusted learning rate to 0.00000
+Train ...
+{'setup': 'multi_task', 'train_db_name': 'PROSPECT', 'val_db_name': 'PROSPECT', 'trBatch': 64, 'valBatch': 64, 'nworkers': 1, 'epochs': 100, 'optimizer': 'adam', 'optimizer_kwargs': {'lr': 0, 'weight_decay': 0}, 'scheduler': 'poly', 'model': 'baseline', 'backbone': 'resnet18', 'head': 'MLP', 'backbone_kwargs': {'dilated': False}, 'task_dictionary': {'Nitrogen': True, 'Phosphorus': True, 'Potassium': True, 'Chlorophylls_area': True, 'Leaf_Dry_Weight': True, 'Leaf_Fresh_Weight': True, 'LMA': True, 'Water Content': True, 'SLA': True, 'Narea': True, 'Carbon': True, 'Cellulose': True, 'Lignin': True, 'Fiber': True, 'Starch': True, 'Sugar': True, 'Phenolics': True, 'Flavonoids': True, 'd13C': True, 'd15N': True, 'Calcium': True, 'Magnesium': True, 'Sulfur': True, 'Aluminum': True, 'Boron': True, 'Copper': True, 'Iron': True, 'Manganese': True, 'Zinc': True, 'Chlorophylls': True, 'Carotenoids': True, 'Carotenoids_area': True, 'Glucose': True, 'Fructose': True, 'Sucrose': True, 'Amino_Acids': True, 'Protein': True, 'ABA': True, 'Proline': True, 'RWC': True, 'CHL_a': True, 'CHL_b': True}, 'loss_kwargs': {'loss_scheme': 'baseline', 'loss_weights': {'Nitrogen': 1, 'Phosphorus': 1, 'Potassium': 1, 'Chlorophylls_area': 1, 'Leaf_Dry_Weight': 1, 'Leaf_Fresh_Weight': 1, 'LMA': 1, 'Water Content': 1, 'SLA': 1, 'Narea': 1, 'Carbon': 1, 'Cellulose': 1, 'Lignin': 1, 'Fiber': 1, 'Starch': 1, 'Sugar': 1, 'Phenolics': 1, 'Flavonoids': 1, 'd13C': 1, 'd15N': 1, 'Calcium': 1, 'Magnesium': 1, 'Sulfur': 1, 'Aluminum': 1, 'Boron': 1, 'Copper': 1, 'Iron': 1, 'Manganese': 1, 'Zinc': 1, 'Chlorophylls': 1, 'Carotenoids': 1, 'Carotenoids_area': 1, 'Glucose': 1, 'Fructose': 1, 'Sucrose': 1, 'Amino_Acids': 1, 'Protein': 1, 'ABA': 1, 'Proline': 1, 'RWC': 1, 'CHL_a': 1, 'CHL_b': 1}}, 'TASKS': {'NAMES': ['Nitrogen', 'Phosphorus', 'Potassium', 'Chlorophylls_area', 'Leaf_Dry_Weight', 'Leaf_Fresh_Weight', 'LMA', 'Water Content', 'SLA', 'Narea', 'Carbon', 'Cellulose', 'Lignin', 'Fiber', 'Starch', 'Sugar', 'Phenolics', 'Flavonoids', 'd13C', 'd15N', 'Calcium', 'Magnesium', 'Sulfur', 'Aluminum', 'Boron', 'Copper', 'Iron', 'Manganese', 'Zinc', 'Chlorophylls', 'Carotenoids', 'Carotenoids_area', 'Glucose', 'Fructose', 'Sucrose', 'Amino_Acids', 'Protein', 'ABA', 'Proline', 'RWC', 'CHL_a', 'CHL_b'], 'NUM_OUTPUT': {'Nitrogen': 1, 'Phosphorus': 1, 'Potassium': 1, 'Chlorophylls_area': 1, 'Leaf_Dry_Weight': 1, 'Leaf_Fresh_Weight': 1, 'LMA': 1, 'Water Content': 1, 'SLA': 1, 'Narea': 1, 'Carbon': 1, 'Cellulose': 1, 'Lignin': 1, 'Fiber': 1, 'Starch': 1, 'Sugar': 1, 'Phenolics': 1, 'Flavonoids': 1, 'd13C': 1, 'd15N': 1, 'Calcium': 1, 'Magnesium': 1, 'Sulfur': 1, 'Aluminum': 1, 'Boron': 1, 'Copper': 1, 'Iron': 1, 'Manganese': 1, 'Zinc': 1, 'Chlorophylls': 1, 'Carotenoids': 1, 'Carotenoids_area': 1, 'Glucose': 1, 'Fructose': 1, 'Sucrose': 1, 'Amino_Acids': 1, 'Protein': 1, 'ABA': 1, 'Proline': 1, 'RWC': 1, 'CHL_a': 1, 'CHL_b': 1}, 'FLAGVALS': {'Nitrogen': None, 'Phosphorus': None, 'Potassium': None, 'Chlorophylls_area': None, 'Leaf_Dry_Weight': None, 'Leaf_Fresh_Weight': None, 'LMA': None, 'Water Content': None, 'SLA': None, 'Narea': None, 'Carbon': None, 'Cellulose': None, 'Lignin': None, 'Fiber': None, 'Starch': None, 'Sugar': None, 'Phenolics': None, 'Flavonoids': None, 'd13C': None, 'd15N': None, 'Calcium': None, 'Magnesium': None, 'Sulfur': None, 'Aluminum': None, 'Boron': None, 'Copper': None, 'Iron': None, 'Manganese': None, 'Zinc': None, 'Chlorophylls': None, 'Carotenoids': None, 'Carotenoids_area': None, 'Glucose': None, 'Fructose': None, 'Sucrose': None, 'Amino_Acids': None, 'Protein': None, 'ABA': None, 'Proline': None, 'RWC': None, 'CHL_a': None, 'CHL_b': None}, 'INFER_FLAGVALS': {'Nitrogen': None, 'Phosphorus': None, 'Potassium': None, 'Chlorophylls_area': None, 'Leaf_Dry_Weight': None, 'Leaf_Fresh_Weight': None, 'LMA': None, 'Water Content': None, 'SLA': None, 'Narea': None, 'Carbon': None, 'Cellulose': None, 'Lignin': None, 'Fiber': None, 'Starch': None, 'Sugar': None, 'Phenolics': None, 'Flavonoids': None, 'd13C': None, 'd15N': None, 'Calcium': None, 'Magnesium': None, 'Sulfur': None, 'Aluminum': None, 'Boron': None, 'Copper': None, 'Iron': None, 'Manganese': None, 'Zinc': None, 'Chlorophylls': None, 'Carotenoids': None, 'Carotenoids_area': None, 'Glucose': None, 'Fructose': None, 'Sucrose': None, 'Amino_Acids': None, 'Protein': None, 'ABA': None, 'Proline': None, 'RWC': None, 'CHL_a': None, 'CHL_b': None}, 'SINGLE_TASK_TEST_DICT': {'Nitrogen': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Nitrogen/results/PROSPECT_test_Nitrogen.json', 'Phosphorus': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Phosphorus/results/PROSPECT_test_Phosphorus.json', 'Potassium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Potassium/results/PROSPECT_test_Potassium.json', 'Chlorophylls_area': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Chlorophylls_area/results/PROSPECT_test_Chlorophylls_area.json', 'Leaf_Dry_Weight': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Leaf_Dry_Weight/results/PROSPECT_test_Leaf_Dry_Weight.json', 'Leaf_Fresh_Weight': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Leaf_Fresh_Weight/results/PROSPECT_test_Leaf_Fresh_Weight.json', 'LMA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/LMA/results/PROSPECT_test_LMA.json', 'Water Content': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Water Content/results/PROSPECT_test_Water Content.json', 'SLA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/SLA/results/PROSPECT_test_SLA.json', 'Narea': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Narea/results/PROSPECT_test_Narea.json', 'Carbon': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carbon/results/PROSPECT_test_Carbon.json', 'Cellulose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Cellulose/results/PROSPECT_test_Cellulose.json', 'Lignin': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Lignin/results/PROSPECT_test_Lignin.json', 'Fiber': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Fiber/results/PROSPECT_test_Fiber.json', 'Starch': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Starch/results/PROSPECT_test_Starch.json', 'Sugar': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sugar/results/PROSPECT_test_Sugar.json', 'Phenolics': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Phenolics/results/PROSPECT_test_Phenolics.json', 'Flavonoids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Flavonoids/results/PROSPECT_test_Flavonoids.json', 'd13C': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/d13C/results/PROSPECT_test_d13C.json', 'd15N': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/d15N/results/PROSPECT_test_d15N.json', 'Calcium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Calcium/results/PROSPECT_test_Calcium.json', 'Magnesium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Magnesium/results/PROSPECT_test_Magnesium.json', 'Sulfur': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sulfur/results/PROSPECT_test_Sulfur.json', 'Aluminum': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Aluminum/results/PROSPECT_test_Aluminum.json', 'Boron': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Boron/results/PROSPECT_test_Boron.json', 'Copper': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Copper/results/PROSPECT_test_Copper.json', 'Iron': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Iron/results/PROSPECT_test_Iron.json', 'Manganese': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Manganese/results/PROSPECT_test_Manganese.json', 'Zinc': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Zinc/results/PROSPECT_test_Zinc.json', 'Chlorophylls': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Chlorophylls/results/PROSPECT_test_Chlorophylls.json', 'Carotenoids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carotenoids/results/PROSPECT_test_Carotenoids.json', 'Carotenoids_area': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carotenoids_area/results/PROSPECT_test_Carotenoids_area.json', 'Glucose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Glucose/results/PROSPECT_test_Glucose.json', 'Fructose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Fructose/results/PROSPECT_test_Fructose.json', 'Sucrose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sucrose/results/PROSPECT_test_Sucrose.json', 'Amino_Acids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Amino_Acids/results/PROSPECT_test_Amino_Acids.json', 'Protein': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Protein/results/PROSPECT_test_Protein.json', 'ABA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/ABA/results/PROSPECT_test_ABA.json', 'Proline': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Proline/results/PROSPECT_test_Proline.json', 'RWC': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/RWC/results/PROSPECT_test_RWC.json', 'CHL_a': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/CHL_a/results/PROSPECT_test_CHL_a.json', 'CHL_b': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/CHL_b/results/PROSPECT_test_CHL_b.json'}, 'SINGLE_TASK_VAL_DICT': {'Nitrogen': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Nitrogen/results/PROSPECT_val_Nitrogen.json', 'Phosphorus': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Phosphorus/results/PROSPECT_val_Phosphorus.json', 'Potassium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Potassium/results/PROSPECT_val_Potassium.json', 'Chlorophylls_area': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Chlorophylls_area/results/PROSPECT_val_Chlorophylls_area.json', 'Leaf_Dry_Weight': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Leaf_Dry_Weight/results/PROSPECT_val_Leaf_Dry_Weight.json', 'Leaf_Fresh_Weight': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Leaf_Fresh_Weight/results/PROSPECT_val_Leaf_Fresh_Weight.json', 'LMA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/LMA/results/PROSPECT_val_LMA.json', 'Water Content': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Water Content/results/PROSPECT_val_Water Content.json', 'SLA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/SLA/results/PROSPECT_val_SLA.json', 'Narea': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Narea/results/PROSPECT_val_Narea.json', 'Carbon': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carbon/results/PROSPECT_val_Carbon.json', 'Cellulose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Cellulose/results/PROSPECT_val_Cellulose.json', 'Lignin': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Lignin/results/PROSPECT_val_Lignin.json', 'Fiber': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Fiber/results/PROSPECT_val_Fiber.json', 'Starch': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Starch/results/PROSPECT_val_Starch.json', 'Sugar': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sugar/results/PROSPECT_val_Sugar.json', 'Phenolics': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Phenolics/results/PROSPECT_val_Phenolics.json', 'Flavonoids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Flavonoids/results/PROSPECT_val_Flavonoids.json', 'd13C': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/d13C/results/PROSPECT_val_d13C.json', 'd15N': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/d15N/results/PROSPECT_val_d15N.json', 'Calcium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Calcium/results/PROSPECT_val_Calcium.json', 'Magnesium': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Magnesium/results/PROSPECT_val_Magnesium.json', 'Sulfur': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sulfur/results/PROSPECT_val_Sulfur.json', 'Aluminum': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Aluminum/results/PROSPECT_val_Aluminum.json', 'Boron': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Boron/results/PROSPECT_val_Boron.json', 'Copper': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Copper/results/PROSPECT_val_Copper.json', 'Iron': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Iron/results/PROSPECT_val_Iron.json', 'Manganese': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Manganese/results/PROSPECT_val_Manganese.json', 'Zinc': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Zinc/results/PROSPECT_val_Zinc.json', 'Chlorophylls': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Chlorophylls/results/PROSPECT_val_Chlorophylls.json', 'Carotenoids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carotenoids/results/PROSPECT_val_Carotenoids.json', 'Carotenoids_area': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Carotenoids_area/results/PROSPECT_val_Carotenoids_area.json', 'Glucose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Glucose/results/PROSPECT_val_Glucose.json', 'Fructose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Fructose/results/PROSPECT_val_Fructose.json', 'Sucrose': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Sucrose/results/PROSPECT_val_Sucrose.json', 'Amino_Acids': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Amino_Acids/results/PROSPECT_val_Amino_Acids.json', 'Protein': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Protein/results/PROSPECT_val_Protein.json', 'ABA': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/ABA/results/PROSPECT_val_ABA.json', 'Proline': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/Proline/results/PROSPECT_val_Proline.json', 'RWC': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/RWC/results/PROSPECT_val_RWC.json', 'CHL_a': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/CHL_a/results/PROSPECT_val_CHL_a.json', 'CHL_b': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/single_task/CHL_b/results/PROSPECT_val_CHL_b.json'}}, 'ALL_TASKS': {'NAMES': ['Nitrogen', 'Phosphorus', 'Potassium', 'Chlorophylls_area', 'Leaf_Dry_Weight', 'Leaf_Fresh_Weight', 'LMA', 'Water Content', 'SLA', 'Narea', 'Carbon', 'Cellulose', 'Lignin', 'Fiber', 'Starch', 'Sugar', 'Phenolics', 'Flavonoids', 'd13C', 'd15N', 'Calcium', 'Magnesium', 'Sulfur', 'Aluminum', 'Boron', 'Copper', 'Iron', 'Manganese', 'Zinc', 'Chlorophylls', 'Carotenoids', 'Carotenoids_area', 'Glucose', 'Fructose', 'Sucrose', 'Amino_Acids', 'Protein', 'ABA', 'Proline', 'RWC', 'CHL_a', 'CHL_b'], 'NUM_OUTPUT': {'Nitrogen': 1, 'Phosphorus': 1, 'Potassium': 1, 'Chlorophylls_area': 1, 'Leaf_Dry_Weight': 1, 'Leaf_Fresh_Weight': 1, 'LMA': 1, 'Water Content': 1, 'SLA': 1, 'Narea': 1, 'Carbon': 1, 'Cellulose': 1, 'Lignin': 1, 'Fiber': 1, 'Starch': 1, 'Sugar': 1, 'Phenolics': 1, 'Flavonoids': 1, 'd13C': 1, 'd15N': 1, 'Calcium': 1, 'Magnesium': 1, 'Sulfur': 1, 'Aluminum': 1, 'Boron': 1, 'Copper': 1, 'Iron': 1, 'Manganese': 1, 'Zinc': 1, 'Chlorophylls': 1, 'Carotenoids': 1, 'Carotenoids_area': 1, 'Glucose': 1, 'Fructose': 1, 'Sucrose': 1, 'Amino_Acids': 1, 'Protein': 1, 'ABA': 1, 'Proline': 1, 'RWC': 1, 'CHL_a': 1, 'CHL_b': 1}, 'FLAGVALS': {'image': 2, 'Nitrogen': None, 'Phosphorus': None, 'Potassium': None, 'Chlorophylls_area': None, 'Leaf_Dry_Weight': None, 'Leaf_Fresh_Weight': None, 'LMA': None, 'Water Content': None, 'SLA': None, 'Narea': None, 'Carbon': None, 'Cellulose': None, 'Lignin': None, 'Fiber': None, 'Starch': None, 'Sugar': None, 'Phenolics': None, 'Flavonoids': None, 'd13C': None, 'd15N': None, 'Calcium': None, 'Magnesium': None, 'Sulfur': None, 'Aluminum': None, 'Boron': None, 'Copper': None, 'Iron': None, 'Manganese': None, 'Zinc': None, 'Chlorophylls': None, 'Carotenoids': None, 'Carotenoids_area': None, 'Glucose': None, 'Fructose': None, 'Sucrose': None, 'Amino_Acids': None, 'Protein': None, 'ABA': None, 'Proline': None, 'RWC': None, 'CHL_a': None, 'CHL_b': None}, 'INFER_FLAGVALS': {'Nitrogen': None, 'Phosphorus': None, 'Potassium': None, 'Chlorophylls_area': None, 'Leaf_Dry_Weight': None, 'Leaf_Fresh_Weight': None, 'LMA': None, 'Water Content': None, 'SLA': None, 'Narea': None, 'Carbon': None, 'Cellulose': None, 'Lignin': None, 'Fiber': None, 'Starch': None, 'Sugar': None, 'Phenolics': None, 'Flavonoids': None, 'd13C': None, 'd15N': None, 'Calcium': None, 'Magnesium': None, 'Sulfur': None, 'Aluminum': None, 'Boron': None, 'Copper': None, 'Iron': None, 'Manganese': None, 'Zinc': None, 'Chlorophylls': None, 'Carotenoids': None, 'Carotenoids_area': None, 'Glucose': None, 'Fructose': None, 'Sucrose': None, 'Amino_Acids': None, 'Protein': None, 'ABA': None, 'Proline': None, 'RWC': None, 'CHL_a': None, 'CHL_b': None}}, 'overfit': False, 'root_dir': '/home/danielz/PycharmProjects/multitask/data/results', 'output_dir': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline', 'save_dir': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline/results', 'checkpoint': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline/checkpoint.pth.tar', 'best_model': '/home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline/best_model.pth.tar'}
+Retrieve model
+Get loss
+MultiTaskLoss(
+  (loss_ft): ModuleDict(
+    (Nitrogen): MSELoss()
+    (Phosphorus): MSELoss()
+    (Potassium): MSELoss()
+    (Chlorophylls_area): MSELoss()
+    (Leaf_Dry_Weight): MSELoss()
+    (Leaf_Fresh_Weight): MSELoss()
+    (LMA): MSELoss()
+    (Water Content): MSELoss()
+    (SLA): MSELoss()
+    (Narea): MSELoss()
+    (Carbon): MSELoss()
+    (Cellulose): MSELoss()
+    (Lignin): MSELoss()
+    (Fiber): MSELoss()
+    (Starch): MSELoss()
+    (Sugar): MSELoss()
+    (Phenolics): MSELoss()
+    (Flavonoids): MSELoss()
+    (d13C): MSELoss()
+    (d15N): MSELoss()
+    (Calcium): MSELoss()
+    (Magnesium): MSELoss()
+    (Sulfur): MSELoss()
+    (Aluminum): MSELoss()
+    (Boron): MSELoss()
+    (Copper): MSELoss()
+    (Iron): MSELoss()
+    (Manganese): MSELoss()
+    (Zinc): MSELoss()
+    (Chlorophylls): MSELoss()
+    (Carotenoids): MSELoss()
+    (Carotenoids_area): MSELoss()
+    (Glucose): MSELoss()
+    (Fructose): MSELoss()
+    (Sucrose): MSELoss()
+    (Amino_Acids): MSELoss()
+    (Protein): MSELoss()
+    (ABA): MSELoss()
+    (Proline): MSELoss()
+    (RWC): MSELoss()
+    (CHL_a): MSELoss()
+    (CHL_b): MSELoss()
+  )
+)
+Set CuDNN benchmark
+Retrieve optimizer
+Optimizer uses a single parameter group - (Default)
+Adam (
+Parameter Group 0
+    amsgrad: False
+    betas: (0.9, 0.999)
+    capturable: False
+    eps: 1e-08
+    foreach: None
+    lr: 0
+    maximize: False
+    weight_decay: 0
+)
+Retrieve dataset
+Preparing train loader for db: PROSPECT
+Preparing val loader for db: PROSPECT
+Preparing val loader for db: PROSPECT
+Train samples 5004 - Val samples 1252
+Train transformations:
+[Identity()]
+Val transformations:
+[Identity()]
+No checkpoint file at /home/danielz/PycharmProjects/multitask/data/results/PROSPECT/resnet18/multi_task_baseline/checkpoint.pth.tar
+Starting main loop
+Epoch 1/100
+----------
+Adjusted learning rate to 0.00000
+Train ...
+Epoch: [0][ 0/78]	Loss Nitrogen 9.6260e+00 (9.6260e+00)	Loss Phosphorus 2.8493e-02 (2.8493e-02)	Loss Potassium 1.0139e+00 (1.0139e+00)	Loss Chlorophylls_area 3.3673e+02 (3.3673e+02)	Loss Leaf_Dry_Weight 1.5397e+01 (1.5397e+01)	Loss Leaf_Fresh_Weight 2.8072e+02 (2.8072e+02)	Loss LMA 3.0575e+03 (3.0575e+03)	Loss Water Content 7.6627e+03 (7.6627e+03)	Loss SLA 6.3823e+00 (6.3823e+00)	Loss Narea 4.5733e-02 (4.5733e-02)	Loss Carbon 4.2692e+02 (4.2692e+02)	Loss Cellulose 4.5173e+01 (4.5173e+01)	Loss Lignin 1.0428e+02 (1.0428e+02)	Loss Fiber 2.7799e+02 (2.7799e+02)	Loss Starch 3.4831e+01 (3.4831e+01)	Loss Sugar 1.1436e+01 (1.1436e+01)	Loss Phenolics 5.9298e+00 (5.9298e+00)	Loss Flavonoids 1.8200e+02 (1.8200e+02)	Loss d13C 1.1061e+01 (1.1061e+01)	Loss d15N 1.0324e+00 (1.0324e+00)	Loss Calcium 1.5308e+00 (1.5308e+00)	Loss Magnesium 2.0498e-01 (2.0498e-01)	Loss Sulfur 2.0119e-01 (2.0119e-01)	Loss Aluminum 2.1416e-02 (2.1416e-02)	Loss Boron 9.4812e-03 (9.4812e-03)	Loss Copper 2.5792e-02 (2.5792e-02)	Loss Iron 7.5589e-03 (7.5589e-03)	Loss Manganese 5.2513e-03 (5.2513e-03)	Loss Zinc 1.3733e-02 (1.3733e-02)	Loss Chlorophylls 5.2466e+01 (5.2466e+01)	Loss Carotenoids 4.9442e+00 (4.9442e+00)	Loss Carotenoids_area 5.1518e-01 (5.1518e-01)	Loss Glucose 4.3767e-02 (4.3767e-02)	Loss Fructose 1.1561e-02 (1.1561e-02)	Loss Sucrose 5.0012e-02 (5.0012e-02)	Loss Amino_Acids 1.4377e-01 (1.4377e-01)	Loss Protein 5.6714e+00 (5.6714e+00)	Loss ABA 5.5289e+02 (5.5289e+02)	Loss Proline 8.4803e+00 (8.4803e+00)	Loss RWC 8.6992e+02 (8.6992e+02)	Loss CHL_a 2.6118e+01 (2.6118e+01)	Loss CHL_b 6.5521e+00 (6.5521e+00)	Loss Total 1.4001e+04 (1.4001e+04)
+Epoch: [0][25/78]	Loss Nitrogen 8.7951e+00 (8.4703e+00)	Loss Phosphorus 2.9435e-02 (3.0573e-02)	Loss Potassium 8.8703e-01 (8.5838e-01)	Loss Chlorophylls_area 3.4987e+02 (2.7204e+02)	Loss Leaf_Dry_Weight 1.5120e+01 (1.0150e+01)	Loss Leaf_Fresh_Weight 2.7489e+02 (1.6611e+02)	Loss LMA 5.0288e+03 (4.2853e+03)	Loss Water Content 7.0829e+03 (5.8662e+03)	Loss SLA 5.7971e-01 (4.4867e+00)	Loss Narea 3.6931e-02 (4.8753e-02)	Loss Carbon 6.6953e+02 (7.1896e+02)	Loss Cellulose 6.9525e+01 (7.7475e+01)	Loss Lignin 1.6494e+02 (2.0421e+02)	Loss Fiber 4.1014e+02 (5.2300e+02)	Loss Starch 2.1359e+01 (5.7934e+01)	Loss Sugar 1.3489e+01 (1.1373e+01)	Loss Phenolics 1.6283e+00 (4.1516e+00)	Loss Flavonoids 2.5091e+02 (2.0511e+02)	Loss d13C 2.3969e+01 (2.1680e+01)	Loss d15N 1.6981e+00 (1.4957e+00)	Loss Calcium 2.2395e-01 (5.8172e+00)	Loss Magnesium 4.2847e-02 (2.6684e-01)	Loss Sulfur 1.6700e-01 (2.8660e-01)	Loss Aluminum 2.5615e-02 (3.1407e-02)	Loss Boron 9.2741e-03 (1.0376e-02)	Loss Copper 2.4943e-02 (2.7768e-02)	Loss Iron 7.1188e-03 (8.0113e-03)	Loss Manganese 3.1471e-03 (1.3904e-02)	Loss Zinc 1.3861e-02 (1.7023e-02)	Loss Chlorophylls 8.4723e+01 (1.1490e+02)	Loss Carotenoids 9.3260e+00 (1.1425e+01)	Loss Carotenoids_area 2.6170e+00 (2.7554e+00)	Loss Glucose 7.2338e-02 (6.7300e-02)	Loss Fructose 1.3664e-02 (1.5205e-02)	Loss Sucrose 3.4700e-01 (1.5730e-01)	Loss Amino_Acids 5.0811e-02 (4.4146e-02)	Loss Protein 1.6071e+01 (5.6900e+00)	Loss ABA 2.7206e+03 (3.3760e+04)	Loss Proline 7.5221e+00 (3.0021e+00)	Loss RWC 1.2091e+03 (6.6410e+02)	Loss CHL_a 4.5609e+01 (5.9117e+01)	Loss CHL_b 6.7817e+00 (1.1068e+01)	Loss Total 1.8492e+04 (4.7078e+04)
+Epoch: [0][50/78]	Loss Nitrogen 7.4998e+00 (8.4741e+00)	Loss Phosphorus 3.0913e-02 (3.1666e-02)	Loss Potassium 7.4992e-01 (9.3785e-01)	Loss Chlorophylls_area 3.1038e+02 (2.8268e+02)	Loss Leaf_Dry_Weight 9.9641e+00 (1.0591e+01)	Loss Leaf_Fresh_Weight 1.8455e+02 (1.7758e+02)	Loss LMA 3.8964e+03 (4.4113e+03)	Loss Water Content 5.8268e+03 (6.4289e+03)	Loss SLA 1.4914e+01 (6.7935e+00)	Loss Narea 7.0242e-02 (6.0039e-02)	Loss Carbon 4.9773e+02 (7.0430e+02)	Loss Cellulose 8.2781e+01 (7.8578e+01)	Loss Lignin 1.3591e+02 (2.0184e+02)	Loss Fiber 3.8961e+02 (5.2323e+02)	Loss Starch 2.4154e+00 (5.3444e+01)	Loss Sugar 1.2716e+00 (1.0233e+01)	Loss Phenolics 7.3110e+00 (3.7170e+00)	Loss Flavonoids 1.1219e+01 (1.6771e+02)	Loss d13C 2.3322e+00 (1.9319e+01)	Loss d15N 1.7994e+00 (1.4837e+00)	Loss Calcium 4.0818e-01 (4.4339e+00)	Loss Magnesium 1.1845e-01 (2.3378e-01)	Loss Sulfur 2.1675e-01 (2.8966e-01)	Loss Aluminum 2.4473e-02 (2.8076e-02)	Loss Boron 1.0708e-02 (1.0342e-02)	Loss Copper 2.6430e-02 (2.7336e-02)	Loss Iron 7.9905e-03 (7.9088e-03)	Loss Manganese 3.5570e-03 (1.0142e-02)	Loss Zinc 1.6194e-02 (1.6837e-02)	Loss Chlorophylls 1.0034e+02 (1.1803e+02)	Loss Carotenoids 1.0068e+01 (1.1798e+01)	Loss Carotenoids_area 3.7974e+00 (2.6013e+00)	Loss Glucose 7.6382e-02 (6.4041e-02)	Loss Fructose 1.9256e-02 (1.5108e-02)	Loss Sucrose 1.7186e-01 (1.5017e-01)	Loss Amino_Acids 9.4509e-02 (4.4491e-02)	Loss Protein 9.0029e+00 (5.5983e+00)	Loss ABA 1.2978e+04 (1.9000e+04)	Loss Proline 3.5146e+00 (2.1691e+00)	Loss RWC 7.9048e+02 (6.6468e+02)	Loss CHL_a 5.9829e+01 (5.9915e+01)	Loss CHL_b 5.9844e+00 (1.1909e+01)	Loss Total 2.5346e+04 (3.2973e+04)
+Epoch: [0][75/78]	Loss Nitrogen 7.3245e+00 (8.6522e+00)	Loss Phosphorus 2.4704e-02 (3.1534e-02)	Loss Potassium 4.2924e-01 (9.3617e-01)	Loss Chlorophylls_area 1.7700e+02 (2.8227e+02)	Loss Leaf_Dry_Weight 5.5168e+00 (1.0721e+01)	Loss Leaf_Fresh_Weight 8.5539e+01 (1.7842e+02)	Loss LMA 4.6581e+03 (4.4389e+03)	Loss Water Content 3.1268e+03 (6.5307e+03)	Loss SLA 2.8092e-01 (6.1901e+00)	Loss Narea 4.4345e-03 (6.1820e-02)	Loss Carbon 8.9061e+02 (6.9751e+02)	Loss Cellulose 9.7348e+01 (7.6584e+01)	Loss Lignin 2.3420e+02 (1.9869e+02)	Loss Fiber 6.0743e+02 (5.1336e+02)	Loss Starch 1.1286e+02 (4.9371e+01)	Loss Sugar 1.4632e+01 (9.4900e+00)	Loss Phenolics 1.1434e+01 (3.5889e+00)	Loss Flavonoids 4.5299e+02 (1.7438e+02)	Loss d13C 3.5199e+01 (1.8331e+01)	Loss d15N 2.0229e+00 (1.5070e+00)	Loss Calcium 5.8826e+00 (4.6908e+00)	Loss Magnesium 3.9413e-01 (2.0788e-01)	Loss Sulfur 5.5231e-01 (2.7354e-01)	Loss Aluminum 2.4158e-02 (4.2772e-02)	Loss Boron 1.1036e-02 (1.0269e-02)	Loss Copper 2.6733e-02 (2.7113e-02)	Loss Iron 8.0647e-03 (7.8278e-03)	Loss Manganese 2.9393e-03 (1.0766e-02)	Loss Zinc 1.5244e-02 (1.6476e-02)	Loss Chlorophylls 1.3354e+02 (1.1488e+02)	Loss Carotenoids 1.3842e+01 (1.1628e+01)	Loss Carotenoids_area 4.8627e+00 (2.3892e+00)	Loss Glucose 1.9974e-01 (6.9767e-02)	Loss Fructose 1.7966e-02 (1.5897e-02)	Loss Sucrose 2.6324e-01 (1.5778e-01)	Loss Amino_Acids 2.4972e-02 (4.3444e-02)	Loss Protein 9.6032e+00 (5.9650e+00)	Loss ABA 2.4433e+02 (1.6804e+04)	Loss Proline 1.3843e+00 (2.1007e+00)	Loss RWC 9.6922e+02 (6.8561e+02)	Loss CHL_a 6.7824e+01 (5.8384e+01)	Loss CHL_b 1.4379e+01 (1.1564e+01)	Loss Total 1.1986e+04 (3.0902e+04)
+Results Nitrogen
+r2             -1.9117
+rmse           2.9331
+Results Phosphorus
+r2             -0.8021
+rmse           0.1775
+Results Potassium
+r2             -0.0618
+rmse           0.9589
+Results Chlorophylls_area
+r2             -0.2609
+rmse           16.5841
+Results Leaf_Dry_Weight
+r2             -0.2937
+rmse           3.2242
+Results Leaf_Fresh_Weight
+r2             -0.2024
+rmse           13.0861
+Results LMA
+r2             -0.8320
+rmse           65.7761
+Results Water Content
+r2             -0.2666
+rmse           79.9868
+Results SLA
+r2             -0.0419
+rmse           1.9599
+Results Narea
+r2             -0.1981
+rmse           0.2196
+Results Carbon
+r2             -0.5590
+rmse           26.3107
+Results Cellulose
+r2             -0.3942
+rmse           8.6811
+Results Lignin
+r2             -0.4579
+rmse           13.9940
+Results Fiber
+r2             -0.4005
+rmse           22.5006
+Results Starch
+r2             -0.0239
+rmse           5.9579
+Results Sugar
+r2             -0.0310
+rmse           2.7252
+Results Phenolics
+r2             -0.0232
+rmse           1.7141
+Results Flavonoids
+r2             -0.0265
+rmse           10.4675
+Results d13C
+r2             -0.0515
+rmse           3.9260
+Results d15N
+r2             0.0199
+rmse           1.1861
+Results Calcium
+r2             -0.0392
+rmse           1.5691
+Results Magnesium
+r2             -0.5018
+rmse           0.4069
+Results Sulfur
+r2             -2.1833
+rmse           0.5146
+Results Aluminum
+r2             -1.3742
+rmse           0.1730
+Results Boron
+r2             -246.7748
+rmse           0.1014
+Results Copper
+r2             -20348.4082
+rmse           0.1645
+Results Iron
+r2             -75.9399
+rmse           0.0885
+Results Manganese
+r2             -0.1895
+rmse           0.0862
+Results Zinc
+r2             -386.0298
+rmse           0.1281
+Results Chlorophylls
+r2             -0.2268
+rmse           10.5771
+Results Carotenoids
+r2             -0.3296
+rmse           3.3700
+Results Carotenoids_area
+r2             -0.0385
+rmse           1.3485
+Results Glucose
+r2             -0.1973
+rmse           0.2511
+Results Fructose
+r2             -0.7850
+rmse           0.1250
+Results Sucrose
+r2             -0.0239
+rmse           0.3816
+Results Amino_Acids
+r2             -0.0591
+rmse           0.1884
+Results Protein
+r2             -0.0420
+rmse           2.3638
+Results ABA
+r2             -0.0061
+rmse           58.0165
+Results Proline
+r2             -0.1513
+rmse           1.1813
+Results RWC
+r2             -0.1271
+rmse           25.8357
+Results CHL_a
+r2             -0.1800
+rmse           7.5021
+Results CHL_b
+r2             -0.1902
+rmse           3.3526
+Results Nitrogen
+r2             -1.9441
+rmse           3.0021
+Results Phosphorus
+r2             -0.7087
+rmse           0.1628
+Results Potassium
+r2             -0.1206
+rmse           0.9379
+Results Chlorophylls_area
+r2             -0.2472
+rmse           15.6503
+Results Leaf_Dry_Weight
+r2             -0.3094
+rmse           3.0950
+Results Leaf_Fresh_Weight
+r2             -0.1737
+rmse           12.3655
+Results LMA
+r2             -0.7822
+rmse           68.1353
+Results Water Content
+r2             -0.2671
+rmse           76.4762
+Results SLA
+r2             -0.0243
+rmse           1.0775
+Results Narea
+r2             -0.0939
+rmse           0.1800
+Results Carbon
+r2             -0.5290
+rmse           25.5389
+Results Cellulose
+r2             -0.3739
+rmse           8.2805
+Results Lignin
+r2             -0.5047
+rmse           13.9230
+Results Fiber
+r2             -0.3979
+rmse           22.1172
+Results Starch
+r2             -0.0186
+rmse           4.5930
+Results Sugar
+r2             -0.0514
+rmse           2.2003
+Results Phenolics
+r2             0.0238
+rmse           1.5990
+Results Flavonoids
+r2             -0.0168
+rmse           9.4864
+Results d13C
+r2             -0.0681
+rmse           2.6959
+Results d15N
+r2             -0.0810
+rmse           1.1185
+Results Calcium
+r2             -0.1006
+rmse           1.2283
+Results Magnesium
+r2             -6.1378
+rmse           0.7595
+Results Sulfur
+r2             -3.3423
+rmse           0.6942
+Results Aluminum
+r2             -1.6790
+rmse           0.2779
+Results Boron
+r2             -9829.0488
+rmse           0.3382
+Results Copper
+r2             -142139.7188
+rmse           0.2978
+Results Iron
+r2             -84.2082
+rmse           0.1079
+Results Manganese
+r2             -9.1428
+rmse           0.1536
+Results Zinc
+r2             -388.3299
+rmse           0.0807
+Results Chlorophylls
+r2             -0.2209
+rmse           10.5774
+Results Carotenoids
+r2             -0.4716
+rmse           3.5938
+Results Carotenoids_area
+r2             0.0020
+rmse           1.0959
+Results Glucose
+r2             -1.0082
+rmse           0.3229
+Results Fructose
+r2             -14.9022
+rmse           0.3576
+Results Sucrose
+r2             -1.2033
+rmse           0.5413
+Results Amino_Acids
+r2             -3.6880
+rmse           0.4247
+Results Protein
+r2             -0.0748
+rmse           2.4089
+Results ABA
+r2             -0.0176
+rmse           45.2550
+Results Proline
+r2             -0.1425
+rmse           1.0765
+Results RWC
+r2             -0.1261
+rmse           26.1947
+Results CHL_a
+r2             -0.1767
+rmse           7.5475
+Results CHL_b
+r2             -0.2073
+rmse           3.3978
+Checkpoint ...
+Epoch 2/100
+----------
+Adjusted learning rate to 0.00000
+Train ...
+Epoch: [1][ 0/78]	Loss Nitrogen 8.7972e+00 (8.7972e+00)	Loss Phosphorus 2.9382e-02 (2.9382e-02)	Loss Potassium 8.5848e-01 (8.5848e-01)	Loss Chlorophylls_area 1.7029e+02 (1.7029e+02)	Loss Leaf_Dry_Weight 8.6594e+00 (8.6594e+00)	Loss Leaf_Fresh_Weight 1.3755e+02 (1.3755e+02)	Loss LMA 3.6976e+03 (3.6976e+03)	Loss Water Content 5.4943e+03 (5.4943e+03)	Loss SLA 4.4834e-01 (4.4834e-01)	Loss Narea 8.3976e-02 (8.3976e-02)	Loss Carbon 6.2471e+02 (6.2471e+02)	Loss Cellulose 7.1207e+01 (7.1207e+01)	Loss Lignin 1.5512e+02 (1.5512e+02)	Loss Fiber 4.1728e+02 (4.1728e+02)	Loss Starch 7.8258e+01 (7.8258e+01)	Loss Sugar 1.0451e+01 (1.0451e+01)	Loss Phenolics 2.9341e+00 (2.9341e+00)	Loss Flavonoids 3.1792e+01 (3.1792e+01)	Loss d13C 2.3934e+01 (2.3934e+01)	Loss d15N 2.1604e-01 (2.1604e-01)	Loss Calcium 1.2211e+01 (1.2211e+01)	Loss Magnesium 3.3461e-01 (3.3461e-01)	Loss Sulfur 4.4650e-01 (4.4650e-01)	Loss Aluminum 1.0209e-01 (1.0209e-01)	Loss Boron 9.2713e-03 (9.2713e-03)	Loss Copper 2.5576e-02 (2.5576e-02)	Loss Iron 8.6585e-03 (8.6585e-03)	Loss Manganese 1.3974e-02 (1.3974e-02)	Loss Zinc 1.6449e-02 (1.6449e-02)	Loss Chlorophylls 8.3274e+01 (8.3274e+01)	Loss Carotenoids 1.0277e+01 (1.0277e+01)	Loss Carotenoids_area 2.9393e-03 (2.9393e-03)	Loss Glucose 6.3073e-02 (6.3073e-02)	Loss Fructose 1.6590e-02 (1.6590e-02)	Loss Sucrose 1.2716e-01 (1.2716e-01)	Loss Amino_Acids 1.3715e-02 (1.3715e-02)	Loss Protein 5.8589e+00 (5.8589e+00)	Loss ABA 5.3189e+02 (5.3189e+02)	Loss Proline 4.9524e-01 (4.9524e-01)	Loss RWC 6.2814e+02 (6.2814e+02)	Loss CHL_a 3.2042e+01 (3.2042e+01)	Loss CHL_b 1.2735e+01 (1.2735e+01)	Loss Total 1.2253e+04 (1.2253e+04)
+Epoch: [1][25/78]	Loss Nitrogen 1.1294e+01 (8.8288e+00)	Loss Phosphorus 2.7415e-02 (3.1991e-02)	Loss Potassium 9.6958e-01 (9.5864e-01)	Loss Chlorophylls_area 2.9627e+02 (2.7149e+02)	Loss Leaf_Dry_Weight 1.5132e+01 (1.1351e+01)	Loss Leaf_Fresh_Weight 2.7385e+02 (1.8452e+02)	Loss LMA 3.6236e+03 (4.3823e+03)	Loss Water Content 5.9972e+03 (6.4633e+03)	Loss SLA 5.3767e-01 (4.7363e+00)	Loss Narea 4.5267e-03 (6.1785e-02)	Loss Carbon 8.8442e+02 (6.8381e+02)	Loss Cellulose 1.2180e+02 (7.6471e+01)	Loss Lignin 2.3600e+02 (2.0641e+02)	Loss Fiber 6.2893e+02 (5.2557e+02)	Loss Starch 4.2828e+00 (4.8037e+01)	Loss Sugar 1.2230e+00 (8.2020e+00)	Loss Phenolics 1.0152e+01 (2.9456e+00)	Loss Flavonoids 4.6307e+00 (1.3253e+02)	Loss d13C 6.9380e+00 (1.7695e+01)	Loss d15N 1.5467e+00 (1.4362e+00)	Loss Calcium 9.0340e-01 (4.6592e+00)	Loss Magnesium 2.3230e-01 (2.1720e-01)	Loss Sulfur 6.3334e-01 (2.9314e-01)	Loss Aluminum 2.5158e-02 (3.2627e-02)	Loss Boron 1.1353e-02 (1.0311e-02)	Loss Copper 3.0444e-02 (2.6821e-02)	Loss Iron 7.9137e-03 (8.0789e-03)	Loss Manganese 3.5723e-03 (6.8675e-03)	Loss Zinc 2.1429e-02 (1.6759e-02)	Loss Chlorophylls 1.4813e+02 (1.2068e+02)	Loss Carotenoids 1.2728e+01 (1.2085e+01)	Loss Carotenoids_area 9.9160e-01 (1.7859e+00)	Loss Glucose 2.2163e-02 (7.3169e-02)	Loss Fructose 1.1695e-02 (1.6006e-02)	Loss Sucrose 5.1975e-02 (1.4689e-01)	Loss Amino_Acids 1.3551e-02 (4.4783e-02)	Loss Protein 4.0068e+00 (5.6791e+00)	Loss ABA 4.6145e+03 (3.3342e+03)	Loss Proline 4.1924e-01 (2.0119e+00)	Loss RWC 3.0198e+02 (7.0860e+02)	Loss CHL_a 8.4495e+01 (6.2674e+01)	Loss CHL_b 1.1471e+01 (1.1372e+01)	Loss Total 1.7300e+04 (1.7295e+04)
+Epoch: [1][50/78]	Loss Nitrogen 6.9092e+00 (8.5563e+00)	Loss Phosphorus 3.0186e-02 (3.2211e-02)	Loss Potassium 1.0031e+00 (9.5758e-01)	Loss Chlorophylls_area 3.7856e+02 (2.8297e+02)	Loss Leaf_Dry_Weight 1.3934e+01 (1.0929e+01)	Loss Leaf_Fresh_Weight 2.5906e+02 (1.7967e+02)	Loss LMA 4.2727e+03 (4.6024e+03)	Loss Water Content 7.5032e+03 (6.5922e+03)	Loss SLA 6.3675e-01 (5.1362e+00)	Loss Narea 1.2728e-01 (5.5787e-02)	Loss Carbon 7.2827e+02 (6.9890e+02)	Loss Cellulose 8.4326e+01 (7.9112e+01)	Loss Lignin 2.2013e+02 (1.9906e+02)	Loss Fiber 5.8232e+02 (5.1622e+02)	Loss Starch 1.0006e+02 (4.8880e+01)	Loss Sugar 1.5953e+01 (9.3428e+00)	Loss Phenolics 2.2881e+00 (3.2955e+00)	Loss Flavonoids 2.8436e+02 (1.3820e+02)	Loss d13C 3.7009e+01 (1.8496e+01)	Loss d15N 2.2970e+00 (1.5974e+00)	Loss Calcium 2.4007e+01 (4.4355e+00)	Loss Magnesium 2.4024e-01 (2.0926e-01)	Loss Sulfur 2.7589e-01 (2.7673e-01)	Loss Aluminum 2.8098e-02 (5.2623e-02)	Loss Boron 9.4661e-03 (1.0310e-02)	Loss Copper 2.3954e-02 (2.7005e-02)	Loss Iron 7.2997e-03 (7.9063e-03)	Loss Manganese 3.8906e-03 (9.4393e-03)	Loss Zinc 1.5424e-02 (1.6790e-02)	Loss Chlorophylls 1.4315e+02 (1.1419e+02)	Loss Carotenoids 1.3526e+01 (1.1472e+01)	Loss Carotenoids_area 4.7530e+00 (2.3042e+00)	Loss Glucose 4.2599e-02 (6.7156e-02)	Loss Fructose 1.2812e-02 (1.6205e-02)	Loss Sucrose 1.5620e-01 (1.6400e-01)	Loss Amino_Acids 2.1132e-02 (3.9968e-02)	Loss Protein 7.4370e+00 (6.1251e+00)	Loss ABA 1.6129e+02 (3.4549e+03)	Loss Proline 6.9054e-01 (2.1864e+00)	Loss RWC 9.5742e+02 (7.0774e+02)	Loss CHL_a 8.0493e+01 (5.8616e+01)	Loss CHL_b 1.1807e+01 (1.1052e+01)	Loss Total 1.5899e+04 (1.7770e+04)

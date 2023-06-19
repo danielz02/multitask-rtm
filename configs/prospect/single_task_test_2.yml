@@ -1,0 +1,133 @@
+# Setup
+setup: single_task
+
+# Database
+train_db_name: PROSPECT
+val_db_name: PROSPECT
+trBatch: 64
+valBatch: 64
+nworkers: 1
+
+# Optimizer and scheduler
+epochs: 500
+optimizer: adam
+optimizer_kwargs:
+   lr: 0.0001
+   weight_decay: 0.0001
+scheduler: poly
+
+# Model
+model: baseline
+backbone: resnet18
+head: MLP
+
+backbone_kwargs:
+    dilated: False
+
+# Tasks
+task_dictionary:
+    # N: True
+    # Cab(Chl): True
+    # Car: True
+    # Ant: True
+    # Cs(Cbown): True
+    # Cw: True
+    # Cm(Cdm): True
+    
+    # Nitrogen: True
+    # Phosphorus: True
+    # Potassium: True
+    # Chlorophylls_area: True
+    # Leaf_Dry_Weight: True
+    # Leaf_Fresh_Weight: True
+    # LMA: True
+    # Water Content: True
+    # SLA: True
+    # Narea: True
+    # Carbon: True
+    # Cellulose: True
+    # Lignin: True
+    # Fiber: True
+    # Starch: True
+    # Sugar: True
+    # Phenolics: True
+    # Flavonoids: True
+    # d13C: True
+    # d15N: True
+    # Calcium: True
+    # Magnesium: True
+    # Sulfur: True
+    # Aluminum: True
+    # Boron: True
+    # Copper: True
+    # Iron: True
+    # Manganese: True
+    # Zinc: True
+    # Chlorophylls: True
+    # Carotenoids: True
+    # Carotenoids_area: True
+    # Glucose: True
+    # Fructose: True
+    # Sucrose: True
+    Amino_Acids: True
+    # Protein: True
+    # ABA: True
+    # Proline: True
+    # RWC: True
+    # CHL_a: True
+    # CHL_b: True
+
+# Loss kwargs
+loss_kwargs:
+   loss_scheme: baseline
+   loss_weights:
+        # N: 1
+        # Cab(Chl): 1
+        # Car: 1
+        # Ant: 1
+        # Cs(Cbown): 1
+        # Cw: 1
+        # Cm(Cdm): 1
+        
+        # Nitrogen: 1
+        # Phosphorus: 1
+        # Potassium: 1
+        # Chlorophylls_area: 1
+        # Leaf_Dry_Weight: 1
+        # Leaf_Fresh_Weight: 1
+        # LMA: 1
+        # Water Content: 1
+        # SLA: 1
+        # Narea: 1
+        # Carbon: 1
+        # Cellulose: 1
+        # Lignin: 1
+        # Fiber: 1
+        # Starch: 1
+        # Sugar: 1
+        # Phenolics: 1
+        # Flavonoids: 1
+        # d13C: 1
+        # d15N: 1
+        # Calcium: 1
+        # Magnesium: 1
+        # Sulfur: 1
+        # Aluminum: 1
+        # Boron: 1
+        # Copper: 1
+        # Iron: 1
+        # Manganese: 1
+        # Zinc: 1
+        # Chlorophylls: 1
+        # Carotenoids: 1
+        # Carotenoids_area: 1
+        # Glucose: 1
+        # Fructose: 1
+        # Sucrose: 1
+        Amino_Acids: 1
+        # Protein: 1
+        # ABA: 1
+        # Proline: 1
+        # RWC: 1
+        # CHL_a: 1
+        # CHL_b: 1

@@ -199,7 +199,7 @@ def get_transformations(p):
     return transforms_tr, transforms_ts
 
 
-def get_train_dataset(p, transforms):
+def get_train_dataset(p, transforms, ratio):
     """ Return the train dataset """
 
     db_name = p['train_db_name']
@@ -224,7 +224,40 @@ def get_train_dataset(p, transforms):
     elif db_name == 'PROSPECT':
         from data.tabular import TabularRegression
         database = TabularRegression(
-            path="./dataset/PROSPECT.csv", task_names=p.ALL_TASKS.NAMES, split_ratio=0.8, split="train"
+            path="./dataset/data.csv", task_names=p.ALL_TASKS.NAMES, split_ratio=ratio, split="train"
+        )
+
+    else:
+        raise NotImplemented("train_db_name: Choose among PASCALContext and NYUD")
+
+    return database
+
+def get_train_dataset_name(p, transforms, ratio, name):
+    """ Return the train dataset """
+
+    db_name = p['train_db_name']
+    print('Preparing train loader for db: {}'.format(db_name))
+
+    if db_name == 'PASCALContext':
+        from data.pascal_context import PASCALContext
+        database = PASCALContext(split=['train'], transform=transforms, retname=True,
+                                 do_semseg='semseg' in p.ALL_TASKS.NAMES,
+                                 do_edge='edge' in p.ALL_TASKS.NAMES,
+                                 do_normals='normals' in p.ALL_TASKS.NAMES,
+                                 do_sal='sal' in p.ALL_TASKS.NAMES,
+                                 do_human_parts='human_parts' in p.ALL_TASKS.NAMES,
+                                 overfit=p['overfit'])
+
+    elif db_name == 'NYUD':
+        from data.nyud import NYUD_MT
+        database = NYUD_MT(split='train', transform=transforms, do_edge='edge' in p.ALL_TASKS.NAMES,
+                           do_semseg='semseg' in p.ALL_TASKS.NAMES,
+                           do_normals='normals' in p.ALL_TASKS.NAMES,
+                           do_depth='depth' in p.ALL_TASKS.NAMES, overfit=p['overfit'])
+    elif db_name == 'PROSPECT':
+        from data.tabular import TabularRegression
+        database = TabularRegression(
+            path="./dataset/data.csv", task_names=name, split_ratio=ratio, split="train"
         )
 
     else:
@@ -235,7 +268,6 @@ def get_train_dataset(p, transforms):
 
 def get_train_dataloader(p, dataset):
     """ Return the train dataloader """
-
     trainloader = DataLoader(dataset, batch_size=p['trBatch'], shuffle=True, drop_last=True,
                              num_workers=p['nworkers'], collate_fn=collate_mil)
     return trainloader
@@ -266,7 +298,7 @@ def get_val_dataset(p, transforms):
     elif db_name == 'PROSPECT':
         from data.tabular import TabularRegression
         database = TabularRegression(
-            path="./dataset/PROSPECT.csv", task_names=p.ALL_TASKS.NAMES, split_ratio=0.8, split="val"
+            path="./dataset/data.csv", task_names=p.ALL_TASKS.NAMES, split_ratio=0.8, split="val"
         )
     else:
         raise NotImplemented("test_db_name: Choose among PASCALContext and NYUD")
@@ -312,7 +344,8 @@ def get_loss(p, task=None):
 
     elif p["train_db_name"] == "PROSPECT":
         from torch.nn import MSELoss
-        criterion = MSELoss(size_average=True)
+        criterion = MSELoss(reduction='none') 
+        # criterion = MSELoss(size_average=True)
     else:
         raise NotImplementedError('Undefined Loss: Choose a task among '
                                   'edge, semseg, human_parts, sal, depth, or normals')
@@ -347,13 +380,19 @@ def get_criterion(p):
             loss_ft = torch.nn.ModuleDict({task: get_loss(p, task) for task in set(p.ALL_TASKS.NAMES)})
             loss_weights = p['loss_kwargs']['loss_weights']
             return MTINetLoss(p.TASKS.NAMES, p.AUXILARY_TASKS.NAMES, loss_ft, loss_weights)
-
-
         else:
             raise NotImplementedError('Unknown loss scheme {}'.format(p['loss_kwargs']['loss_scheme']))
 
     else:
         raise NotImplementedError('Unknown setup {}'.format(p['setup']))
+    
+def get_criterion_single(task):
+    """ Return training criterion for a given setup """
+
+    from losses.loss_schemes import SingleTaskLoss
+    from torch.nn import MSELoss
+    criterion = MSELoss(reduction='none') 
+    return SingleTaskLoss(criterion, task)
 
 
 """

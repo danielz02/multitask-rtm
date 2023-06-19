@@ -1,14 +1,15 @@
 import os
 
 import torch
-from torchmetrics import R2Score
+# from torchmetrics import R2Score
+from torchmetrics import PearsonCorrCoef
 from torchmetrics.functional import mean_squared_error
 
 
 class RegressionMeter(object):
     def __init__(self, target_name: str):
         self.target_name = target_name
-        self.eval_dict = {'r2': R2Score(), 'rmse': 0., 'n': 0}
+        self.eval_dict = {'r2': PearsonCorrCoef()**2, 'rmse': 0., 'n': 0}
 
     @torch.no_grad()
     def update(self, pred: torch.Tensor, gt: torch.Tensor):
@@ -20,7 +21,7 @@ class RegressionMeter(object):
         self.eval_dict['rmse'] += mean_squared_error(pred, gt, squared=False)
 
     def reset(self):
-        self.eval_dict = {'r2': R2Score(), 'rmse': 0., 'n': 0}
+        self.eval_dict = {'r2': PearsonCorrCoef()**2, 'rmse': 0., 'n': 0}
 
     def get_score(self, verbose=True):
         eval_result = {

@@ -14,7 +14,12 @@ class SingleTaskLoss(nn.Module):
         self.task = task
 
     def forward(self, pred, gt):
-        out = {self.task: self.loss_ft(pred[self.task].reshape(-1), gt[self.task].reshape(-1))}
+        cur_pred = pred[self.task].reshape(-1)
+        cur_gt = gt[self.task].reshape(-1)
+        valid = (cur_gt != -999).squeeze()
+        cur_pred = cur_pred[valid]
+        cur_gt = cur_gt[valid]
+        out = {self.task: torch.nanmean(self.loss_ft(cur_pred, cur_gt))}
         out['total'] = out[self.task]
         return out
 
@@ -29,8 +34,19 @@ class MultiTaskLoss(nn.Module):
         self.loss_weights = loss_weights
 
     def forward(self, pred, gt):
-        out = {task: self.loss_ft[task](pred[task].reshape(-1), gt[task].reshape(-1)) for task in self.tasks}
+        out = {}
+        for task in self.tasks:
+            temp = gt[task].reshape(-1)
+            valid = (temp != -999).squeeze()
+            cur_pred = pred[task].reshape(-1)[valid]
+            cur_gt = gt[task].reshape(-1)[valid]
+            out[task] = torch.nanmean(self.loss_ft[task](cur_pred, cur_gt))
         out['total'] = torch.sum(torch.stack([self.loss_weights[t] * out[t] for t in self.tasks]))
+        
+#         out = {}
+#         for task in self.tasks:
+#             out[task] = torch.nanmean(self.loss_ft[task](pred[task].reshape(-1), gt[task].reshape(-1)))
+#         out['total'] = torch.sum(torch.stack([self.loss_weights[t] * out[t] for t in self.tasks]))
         return out
 
 

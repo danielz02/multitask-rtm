@@ -3,7 +3,8 @@
 
 import torch
 import torch.nn as nn
-from torchvision.models.utils import load_state_dict_from_url
+#from torchvision.models.utils import load_state_dict_from_url
+from torch.utils.model_zoo import load_url as load_state_dict_from_url
 
 
 __all__ = ['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101',
@@ -155,6 +156,9 @@ class ResNet(nn.Module):
                                        dilate=replace_stride_with_dilation[2])
         self.avgpool = nn.AdaptiveAvgPool1d(1)
         self.fc = nn.Linear(512 * block.expansion, num_classes)
+
+        self.layers = [self.conv1, self.bn1, self.relu, self.maxpool, self.layer1, self.layer2, self.layer3, self.layer4, self.avgpool]
+
 
         for m in self.modules():
             if isinstance(m, nn.Conv1d):
