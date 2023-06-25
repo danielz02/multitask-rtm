@@ -50,9 +50,6 @@ def main():
     train_dataloader = get_train_dataloader(p, train_dataset)
     val_dataloader = get_val_dataloader(p, val_dataset)
 
-    train_dataloader = torch.load('train_loader.pt')
-    val_dataloader = torch.load('val_loader.pt')
-
     # Resume from checkpoint
     if os.path.exists(p['checkpoint']):
         print(colored('Restart from checkpoint {}'.format(p['checkpoint']), 'blue'))
@@ -129,7 +126,7 @@ def get_target_pred():
     print(colored('Retrieve dataset', 'blue'))
 
     # Transforms 
-    val_dataloader = val_dataloader = torch.load('val_loader.pt')
+    val_dataloader = torch.load('val_loader.pt')
 
     # Resume from checkpoint
     checkpoint = torch.load(p['checkpoint'], map_location='cpu')

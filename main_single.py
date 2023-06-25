@@ -37,8 +37,11 @@ def main():
     # Optimizer
     optimizer = get_optimizer(p, model)
 
-    train_dataloader = torch.load('train_loader.pt')
-    val_dataloader = torch.load('val_loader.pt')
+    train_transforms, val_transforms = get_transformations(p)
+    train_dataset = get_train_dataset(p, train_transforms, 0.8)
+    val_dataset = get_val_dataset(p, val_transforms)
+    train_dataloader = get_train_dataloader(p, train_dataset)
+    val_dataloader = get_val_dataloader(p, val_dataset)
 
     # Resume from checkpoint
     if os.path.exists(p['checkpoint']):
@@ -47,7 +50,6 @@ def main():
         optimizer.load_state_dict(checkpoint['optimizer'])
         model.load_state_dict(checkpoint['model'])
         start_epoch = checkpoint['epoch']
-
     else:
         print(colored('No checkpoint file at {}'.format(p['checkpoint']), 'blue'))
         start_epoch = 0
@@ -79,8 +81,10 @@ def main():
         torch.save({'optimizer': optimizer.state_dict(), 'total_optimizer': optimizer, 'model': model.state_dict(),
                     'epoch': epoch + 1, 'best_result': best_result}, p['checkpoint'])
 
+    return val_dataloader
 
-def get_target_pred_val():
+
+def get_target_pred_val(val_dataloader):
     # Retrieve config file
     p = create_config(args.config_env, args.config_exp)
     sys.stdout = Logger(os.path.join(p['output_dir'], 'log_file.txt'))
@@ -94,9 +98,6 @@ def get_target_pred_val():
     # CUDNN
     print(colored('Set CuDNN benchmark', 'blue'))
     torch.backends.cudnn.benchmark = True
-
-    # Transforms 
-    val_dataloader = torch.load('val_loader.pt')
 
     # Resume from checkpoint
     checkpoint = torch.load(p['checkpoint'], map_location='cpu')
@@ -128,7 +129,7 @@ def get_target_pred_val():
     torch.save(pred, str(tasks[0]) + '_val_pred.pth')
 
 
-def get_target_pred_train():
+def get_target_pred_train(val_dataloader):
     # Retrieve config file
     p = create_config(args.config_env, args.config_exp)
     sys.stdout = Logger(os.path.join(p['output_dir'], 'log_file.txt'))
@@ -142,9 +143,6 @@ def get_target_pred_train():
     # CUDNN
     print(colored('Set CuDNN benchmark', 'blue'))
     torch.backends.cudnn.benchmark = True
-
-    # Transforms 
-    val_dataloader = torch.load('train_loader.pt')
 
     # Resume from checkpoint
     checkpoint = torch.load(p['checkpoint'], map_location='cpu')
@@ -184,6 +182,6 @@ if __name__ == "__main__":
                         help='Config file for the experiment')
     args = parser.parse_args()
 
-    main()
-    get_target_pred_val()
-    get_target_pred_train()
+    val_loader = main()
+    get_target_pred_val(val_loader)
+    get_target_pred_train(val_loader)

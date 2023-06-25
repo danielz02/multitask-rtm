@@ -20,6 +20,7 @@ from train.train_utils import train_vanilla, cosine_similarity
 from evaluation.evaluate_utils import eval_model
 from termcolor import colored
 
+
 def main():
     # Retrieve config file
     cv2.setNumThreads(0)
@@ -43,18 +44,8 @@ def main():
     train_transforms, val_transforms = get_transformations(p)
     train_dataset = get_train_dataset(p, train_transforms, 0.8)
     val_dataset = get_val_dataset(p, val_transforms)
-    true_val_dataset = get_val_dataset(p, None)  # True validation dataset without reshape
     train_dataloader = get_train_dataloader(p, train_dataset)
     val_dataloader = get_val_dataloader(p, val_dataset)
-
-    if os.path.exists('train_loader.pt'):
-        print('use existing loader')
-        train_dataloader = torch.load('train_loader.pt')
-        val_dataloader = torch.load('val_loader.pt')
-    else:
-        print('no loader detected')
-        torch.save(train_dataloader, 'train_loader.pt')
-        torch.save(val_dataloader, 'val_loader.pt')
 
     # Resume from checkpoint
     if os.path.exists(p['checkpoint']):

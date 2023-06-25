@@ -204,33 +204,16 @@ def get_train_dataset(p, transforms, ratio):
 
     db_name = p['train_db_name']
     print('Preparing train loader for db: {}'.format(db_name))
-
-    if db_name == 'PASCALContext':
-        from data.pascal_context import PASCALContext
-        database = PASCALContext(split=['train'], transform=transforms, retname=True,
-                                 do_semseg='semseg' in p.ALL_TASKS.NAMES,
-                                 do_edge='edge' in p.ALL_TASKS.NAMES,
-                                 do_normals='normals' in p.ALL_TASKS.NAMES,
-                                 do_sal='sal' in p.ALL_TASKS.NAMES,
-                                 do_human_parts='human_parts' in p.ALL_TASKS.NAMES,
-                                 overfit=p['overfit'])
-
-    elif db_name == 'NYUD':
-        from data.nyud import NYUD_MT
-        database = NYUD_MT(split='train', transform=transforms, do_edge='edge' in p.ALL_TASKS.NAMES,
-                           do_semseg='semseg' in p.ALL_TASKS.NAMES,
-                           do_normals='normals' in p.ALL_TASKS.NAMES,
-                           do_depth='depth' in p.ALL_TASKS.NAMES, overfit=p['overfit'])
-    elif db_name == 'PROSPECT':
+    if db_name == 'PROSPECT':
         from data.tabular import TabularRegression
         database = TabularRegression(
             path="./dataset/data.csv", task_names=p.ALL_TASKS.NAMES, split_ratio=ratio, split="train"
         )
-
     else:
-        raise NotImplemented("train_db_name: Choose among PASCALContext and NYUD")
+        raise NotImplemented("train_db_name: Dataset not supported")
 
     return database
+
 
 def get_train_dataset_name(p, transforms, ratio, name):
     """ Return the train dataset """
@@ -238,30 +221,13 @@ def get_train_dataset_name(p, transforms, ratio, name):
     db_name = p['train_db_name']
     print('Preparing train loader for db: {}'.format(db_name))
 
-    if db_name == 'PASCALContext':
-        from data.pascal_context import PASCALContext
-        database = PASCALContext(split=['train'], transform=transforms, retname=True,
-                                 do_semseg='semseg' in p.ALL_TASKS.NAMES,
-                                 do_edge='edge' in p.ALL_TASKS.NAMES,
-                                 do_normals='normals' in p.ALL_TASKS.NAMES,
-                                 do_sal='sal' in p.ALL_TASKS.NAMES,
-                                 do_human_parts='human_parts' in p.ALL_TASKS.NAMES,
-                                 overfit=p['overfit'])
-
-    elif db_name == 'NYUD':
-        from data.nyud import NYUD_MT
-        database = NYUD_MT(split='train', transform=transforms, do_edge='edge' in p.ALL_TASKS.NAMES,
-                           do_semseg='semseg' in p.ALL_TASKS.NAMES,
-                           do_normals='normals' in p.ALL_TASKS.NAMES,
-                           do_depth='depth' in p.ALL_TASKS.NAMES, overfit=p['overfit'])
-    elif db_name == 'PROSPECT':
+    if db_name == 'PROSPECT':
         from data.tabular import TabularRegression
         database = TabularRegression(
             path="./dataset/data.csv", task_names=name, split_ratio=ratio, split="train"
         )
-
     else:
-        raise NotImplemented("train_db_name: Choose among PASCALContext and NYUD")
+        raise NotImplemented("train_db_name: Dataset not supported")
 
     return database
 
@@ -279,29 +245,13 @@ def get_val_dataset(p, transforms):
     db_name = p['val_db_name']
     print('Preparing val loader for db: {}'.format(db_name))
 
-    if db_name == 'PASCALContext':
-        from data.pascal_context import PASCALContext
-        database = PASCALContext(split=['val'], transform=transforms, retname=True,
-                                 do_semseg='semseg' in p.TASKS.NAMES,
-                                 do_edge='edge' in p.TASKS.NAMES,
-                                 do_normals='normals' in p.TASKS.NAMES,
-                                 do_sal='sal' in p.TASKS.NAMES,
-                                 do_human_parts='human_parts' in p.TASKS.NAMES,
-                                 overfit=p['overfit'])
-
-    elif db_name == 'NYUD':
-        from data.nyud import NYUD_MT
-        database = NYUD_MT(split='val', transform=transforms, do_edge='edge' in p.TASKS.NAMES,
-                           do_semseg='semseg' in p.TASKS.NAMES,
-                           do_normals='normals' in p.TASKS.NAMES,
-                           do_depth='depth' in p.TASKS.NAMES, overfit=p['overfit'])
-    elif db_name == 'PROSPECT':
+    if db_name == 'PROSPECT':
         from data.tabular import TabularRegression
         database = TabularRegression(
             path="./dataset/data.csv", task_names=p.ALL_TASKS.NAMES, split_ratio=0.8, split="val"
         )
     else:
-        raise NotImplemented("test_db_name: Choose among PASCALContext and NYUD")
+        raise NotImplemented("train_db_name: Dataset not supported")
 
     return database
 
@@ -309,8 +259,9 @@ def get_val_dataset(p, transforms):
 def get_val_dataloader(p, dataset):
     """ Return the validation dataloader """
 
-    testloader = DataLoader(dataset, batch_size=p['valBatch'], shuffle=False, drop_last=False,
-                            num_workers=p['nworkers'])
+    testloader = DataLoader(
+        dataset, batch_size=p['valBatch'], shuffle=False, drop_last=False, num_workers=p['nworkers']
+    )
     return testloader
 
 
@@ -322,33 +273,11 @@ def get_val_dataloader(p, dataset):
 def get_loss(p, task=None):
     """ Return loss function for a specific task """
 
-    if task == 'edge':
-        from losses.loss_functions import BalancedCrossEntropyLoss
-        criterion = BalancedCrossEntropyLoss(size_average=True, pos_weight=p['edge_w'])
-
-    elif task == 'semseg' or task == 'human_parts':
-        from losses.loss_functions import SoftMaxwithLoss
-        criterion = SoftMaxwithLoss()
-
-    elif task == 'normals':
-        from losses.loss_functions import NormalsLoss
-        criterion = NormalsLoss(normalize=True, size_average=True, norm=p['normloss'])
-
-    elif task == 'sal':
-        from losses.loss_functions import BalancedCrossEntropyLoss
-        criterion = BalancedCrossEntropyLoss(size_average=True)
-
-    elif task == 'depth':
-        from losses.loss_functions import DepthLoss
-        criterion = DepthLoss(p['depthloss'])
-
-    elif p["train_db_name"] == "PROSPECT":
+    if p["train_db_name"] == "PROSPECT":
         from torch.nn import MSELoss
-        criterion = MSELoss(reduction='none') 
-        # criterion = MSELoss(size_average=True)
+        criterion = MSELoss(reduction='none')
     else:
-        raise NotImplementedError('Undefined Loss: Choose a task among '
-                                  'edge, semseg, human_parts, sal, depth, or normals')
+        raise NotImplementedError('Undefined Loss: Choose a task among PROSPECT')
 
     return criterion
 
@@ -385,13 +314,14 @@ def get_criterion(p):
 
     else:
         raise NotImplementedError('Unknown setup {}'.format(p['setup']))
-    
+
+
 def get_criterion_single(task):
     """ Return training criterion for a given setup """
 
     from losses.loss_schemes import SingleTaskLoss
     from torch.nn import MSELoss
-    criterion = MSELoss(reduction='none') 
+    criterion = MSELoss(reduction='none')
     return SingleTaskLoss(criterion, task)
 
 
